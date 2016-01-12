@@ -71,14 +71,18 @@ Usage
 "use strict";
 
 import React from 'react';
-import {ApLocaleMixin, ApLocaleMixinStyle} from 'apeman-react-mixins';
+import {ApLocaleMixin} from 'apeman-react-mixins';
 
 let ExampleComponent = React.createClass({
+    mixins: [
+        ApLocaleMixin
+    ],
     render () {
+        let s = this,
+            l = s.getLocale();
         return (
             <div>
-                <ApLocaleMixinStyle scoped></ApLocaleMixinStyle>
-                <ApLocaleMixin></ApLocaleMixin>
+                <span>{l.title}</span>
             </div>
         )
     }
@@ -98,10 +102,7 @@ Mixin
 
 ### ApLocaleMixin
 
-**Props**
-
-| Name | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
+This provides `.getLocale()` function, which returns a locale prop given it's context.
 
 
 
