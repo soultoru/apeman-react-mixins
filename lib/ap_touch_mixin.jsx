@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import ReactDOM from 'react-dom';
 
 const TOUCH_HAMMER_KEY = "_apTouchHammer";
 
