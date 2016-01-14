@@ -11,6 +11,9 @@ import ReactDOM from 'react-dom';
 const TOUCH_HAMMER_KEY = "_apTouchHammer";
 
 function createTouchHammer(node, props) {
+    if(!node){
+        return;
+    }
     let Hammer = require('hammerjs'),
         hammer = new Hammer(node);
     if (props.touchOptions) {
