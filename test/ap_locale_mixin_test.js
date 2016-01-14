@@ -51,7 +51,6 @@ describe('ap-locale-mixin', () => {
         let root = React.createElement('div', {}, parent);
         let html = ReactDOM.renderToString(root);
         assert.ok(html);
-        console.log(html);
         done();
     });
 });

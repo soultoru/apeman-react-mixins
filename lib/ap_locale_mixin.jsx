@@ -1,5 +1,5 @@
 /**
- * React mixin set of apeman.
+ * Mixin to handle locale.
  * @constructor ApLocaleMixin
  */
 
@@ -9,8 +9,8 @@ import React, {PropTypes as types} from 'react';
 
 const LOCALE_PROP_KEY = "_apLocale";
 
-/** @lends LocaleMixin */
-let LocaleMixin = {
+/** @lends ApLocaleMixin */
+let ApLocaleMixin = {
 
     //--------------------
     // Custom
@@ -34,6 +34,12 @@ let LocaleMixin = {
     },
     childContextTypes: {
         [LOCALE_PROP_KEY]: types.object
+    },
+    getChildContext(){
+        let s = this;
+        return {
+            [LOCALE_PROP_KEY]: s.props.locale || s.getLocale()
+        }
     },
 
     //--------------------
@@ -61,15 +67,8 @@ let LocaleMixin = {
 
     componentWillUnmount() {
         let s = this;
-    },
-
-    getChildContext(){
-        let s = this;
-        return {
-            [LOCALE_PROP_KEY]: s.props.locale || s.getLocale()
-        }
     }
 
 };
 
-module.exports = Object.freeze(LocaleMixin);
+module.exports = Object.freeze(ApLocaleMixin);

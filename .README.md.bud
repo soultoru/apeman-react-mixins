@@ -21,7 +21,10 @@ module.exports = apeTmpl.readmeMdBud({
     overview: 'doc/overview.md',
     links: require('./doc/links'),
     vars: {
-        org: pkg.repository.split('/').shift()
+        org: pkg.repository.split('/').shift(),
+        touchHandlers: Object.keys(
+            require('./lib/ap_touch_mixin').propTypes
+        )
     }
 });
 

@@ -1,7 +1,28 @@
 Usage
 ---------
 
+
+### ApLocaleMixin
+
+If you set `locale` prop to a locale-mixed component,
+all locale-mixed descendants has access to the locale
+
+
 ```jsx
-{{{read 'example/example-usage.jsx'}}}
+{{{read 'example/example-locale.jsx'}}}
 ```
 
+### ApTouchMixin
+
+Touch mixin gives you finger gesture like pan, pinch, rotate, etc.
+
+
+```jsx
+{{{read 'example/example-touch.jsx'}}}
+```
+
+**Available Props**
+
+{{#each vars.touchHandlers}}
++ {{this}}
+{{/each}}

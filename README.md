@@ -67,13 +67,23 @@ $ npm install apeman-react-mixins --save
 Usage
 ---------
 
+
+### ApLocaleMixin
+
+If you set `locale` prop to a locale-mixed component,
+all locale-mixed descendants has access to the locale
+
+
 ```jsx
+/**
+ * This is an example to use ApLocaleMixin.
+ */
 "use strict";
 
 import React from 'react';
 import {ApLocaleMixin} from 'apeman-react-mixins';
 
-let ExampleComponent = React.createClass({
+let Parent = React.createClass({
     mixins: [
         ApLocaleMixin
     ],
@@ -82,14 +92,100 @@ let ExampleComponent = React.createClass({
             l = s.getLocale();
         return (
             <div>
-                <span>{l.title}</span>
+                <span>This is parent of {l.title}</span>
             </div>
         )
     }
 });
 
+
+let Child = React.createClass({
+    mixins: [
+        ApLocaleMixin // Add the mixin
+    ],
+    render () {
+        let s = this,
+            l = s.getLocale(); // Get locale registered in parent.
+        return (
+            <div>
+                <span>This is child of {l.title}</span>
+            </div>
+        )
+    }
+});
+
+let locale = {title: 'My awesome app'}; // Message resources.
+let element = (<div>
+    <Parent locale={locale}>
+        <Child />
+    </Parent>
+</div>);
+
+React.render(element, 'my-container', () => {
+});
+
 ```
 
+### ApTouchMixin
+
+Touch mixin gives you finger gesture like pan, pinch, rotate, etc.
+
+
+```jsx
+/**
+ * This is an example to use ApTouchMixin.
+ */
+"use strict";
+
+import React from 'react';
+import {ApTouchMixin} from 'apeman-react-mixins';
+
+let Component = React.createClass({
+    mixins: [
+        ApTouchMixin
+    ],
+    render () {
+        return (
+            <div>Touch me!</div>
+        )
+    }
+});
+let element = (<div>
+    <Component >
+    </Component>
+</div>);
+
+React.render(element, 'my-container', () => {
+});
+
+```
+
+**Available Props**
+
++ onTap
++ onDoubleTap
++ onPan
++ onPanStart
++ onPanMove
++ onPanEnd
++ onPanCancel
++ onSwipe
++ onPress
++ onPressUp
++ onPinch
++ onPinchStart
++ onPinchMove
++ onPinchEnd
++ onPinchCancel
++ onRotate
++ onRotateStart
++ onRotateMove
++ onRotateEnd
++ onRotateCancel
++ touchOptions
++ panThreshold
++ panDirection
++ swipeDirection
 
 
 <!-- Section from "doc/guides/03.Usage.md.hbs" End -->
