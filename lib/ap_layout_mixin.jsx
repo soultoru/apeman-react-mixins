@@ -50,10 +50,13 @@ let ApResizeMixin = {
             console.warn(HANDLER_NOT_IMPLEMENTED_WARNING);
         }
         window.addEventListener('resize', s._layoutIfNeeded);
+
+        setTimeout(s._layoutIfNeeded, LAYOUT_INTERVAL / 2);
     },
 
     componentWillReceiveProps(nextProps) {
         let s = this;
+        setTimeout(s._layoutIfNeeded, LAYOUT_INTERVAL / 2);
     },
 
     componentWillUpdate(nextProps, nextState) {

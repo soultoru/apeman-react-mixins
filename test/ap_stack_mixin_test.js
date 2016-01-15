@@ -7,6 +7,7 @@
 const ApStackMixin = require('../lib/ap_stack_mixin.js'),
     React = require('react'),
     ReactDOM = require('react-dom/server'),
+    ApViewStack = require('apeman-react-view')['ApViewStack'],
     assert = require('assert');
 
 describe('ap-stack-mixin', () => {
@@ -32,7 +33,7 @@ describe('ap-stack-mixin', () => {
             }
         });
         let root = React.createElement(MockClass, {
-            stacker: {}
+            stacker: ApViewStack.Stacker
         });
         let html = ReactDOM.renderToString(root);
         assert.ok(html);
