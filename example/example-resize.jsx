@@ -16,7 +16,7 @@ let Component = React.createClass({
         )
     },
     /** Handler of window resize event */
-    onResize(e){
+    windowDidResize(e){
         /*..*/
     }
 

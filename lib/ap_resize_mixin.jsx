@@ -7,7 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 
-const HANDLER_NOT_IMPLEMENTED_WARNING = '[ApResizeMixin] Should implement onResize method.';
+const HANDLER_NOT_IMPLEMENTED_WARNING = '[ApResizeMixin] Should implement windowDidResize method.';
 
 /** @lends ApResizeMixin */
 let ApResizeMixin = {
@@ -29,8 +29,8 @@ let ApResizeMixin = {
 
     componentDidMount() {
         let s = this;
-        if (s.onResize) {
-            window.addEventListener('resize', s.onResize);
+        if (s.windowDidResize) {
+            window.addEventListener('resize', s.windowDidResize);
         } else {
             console.warn(HANDLER_NOT_IMPLEMENTED_WARNING);
         }
@@ -50,8 +50,8 @@ let ApResizeMixin = {
 
     componentWillUnmount() {
         let s = this;
-        if (s.onResize) {
-            window.removeEventListener('resize', s.onResize);
+        if (s.windowDidResize) {
+            window.removeEventListener('resize', s.windowDidResize);
         } else {
             console.warn(HANDLER_NOT_IMPLEMENTED_WARNING);
         }

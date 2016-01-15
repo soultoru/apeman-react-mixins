@@ -5,7 +5,7 @@ import React, {PropTypes as types} from 'react';
 import {ApViewStack} from 'apeman-react-view';
 "use strict";
 
-const STACK_INSETS_STATE_KEY = 'stackInsets';
+const INSETS_STATE_KEY = '_apStackInsets';
 
 /** @lends ApStackMixin */
 const ApStackMixin = {
@@ -36,17 +36,17 @@ const ApStackMixin = {
      */
     getStackInsets(){
         let s = this;
-        return s.state[STACK_INSETS_STATE_KEY] || {};
+        return s.state[INSETS_STATE_KEY] || {};
     },
     /**
      * Set insets of the stack.
-     * @param {nextInsets}
+     * @param {object} nextInsets - Insets to set.
      */
     setStackInsets(nextInsets){
         let s = this;
         let insets = s.getStackInsets();
         s.setState({
-            [STACK_INSETS_STATE_KEY]: Object.assign(insets, nextInsets)
+            [INSETS_STATE_KEY]: Object.assign(insets, nextInsets)
         });
     },
 
@@ -59,15 +59,34 @@ const ApStackMixin = {
     },
 
     propTypes: {
-        stacker: types.instanceOf(ApViewStack.Stacker).isRequired
+        stacker: types.instanceOf(ApViewStack.Stacker).isRequired,
+        stackInsets: types.object
     },
 
     getInitialState() {
         return {
-            [STACK_INSETS_STATE_KEY]: {}
+            [INSETS_STATE_KEY]: {}
         };
-    }
+    },
 
+    //--------------------
+    // Lifecycle
+    //--------------------
+
+    componentDidMount() {
+        let s = this;
+        let {props} = s;
+        if (props.stackInsets) {
+            s.setStackInsets(props.stackInsets);
+        }
+    },
+
+    componentWillReceiveProps(nextProps) {
+        let s = this;
+        if (nextProps.stackInsets) {
+            s.setStackInsets(nextProps.stackInsets);
+        }
+    }
 };
 
 module.exports = Object.freeze(ApStackMixin);
