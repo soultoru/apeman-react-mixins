@@ -16,7 +16,6 @@ let ApLocaleMixin = {
     // Custom
     //--------------------
 
-
     /**
      * Get locales
      * @returns {object} - Locale data.
