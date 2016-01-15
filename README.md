@@ -151,7 +151,7 @@ let Component = React.createClass({
     }
 });
 let element = (<div>
-    <Component >
+    <Component onTap={(e)=>{/*...*/}}>
     </Component>
 </div>);
 

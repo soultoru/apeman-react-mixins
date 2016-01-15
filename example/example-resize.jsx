@@ -1,23 +1,28 @@
 /**
- * This is an example to use ApTouchMixin.
+ * This is an example to use ApResizeMixin.
  */
 "use strict";
 
 import React from 'react';
-import {ApTouchMixin} from 'apeman-react-mixins';
+import {ApResizeMixin} from 'apeman-react-mixins';
 
 let Component = React.createClass({
     mixins: [
-        ApTouchMixin
+        ApResizeMixin
     ],
     render () {
         return (
-            <div>Touch me!</div>
+            <div>Foo</div>
         )
+    },
+    /** Handler of window resize event */
+    onResize(e){
+        /*..*/
     }
+
 });
 let element = (<div>
-    <Component onTap={(e)=>{/*...*/}}>
+    <Component>
     </Component>
 </div>);
 
