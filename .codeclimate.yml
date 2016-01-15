@@ -3,4 +3,4 @@ languages:
 exclude_paths:
 - "doc/*"
 - "example/*"
-- "lib/*/*.js" # Remove compiled script
+- "lib/*.js" # Remove compiled script

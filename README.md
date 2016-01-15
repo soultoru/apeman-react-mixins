@@ -226,22 +226,46 @@ React.render(element, 'my-container', () => {
 
 ```
 
+### ApStackMixin
+
+Handle ApViewStack stacker
+
+```jsx
+/**
+ * This is an example to use ApStackMixin.
+ */
+"use strict";
+
+import React from 'react';
+import {ApStackMixin} from 'apeman-react-mixins';
+
+let Component = React.createClass({
+    mixins: [
+        ApStackMixin
+    ],
+    render () {
+        let s = this;
+        return (
+            <div>{s.renderStack()}</div>
+        )
+    }
+
+});
+
+let stacker = Component.Stacker(); // Create istance of ApViewStack.Stacker
+stacker.pushView('div', {});
+
+let element = (<div>
+    <Component stacker={stacker}>
+    </Component>
+</div>);
+
+React.render(element, 'my-container', () => {
+});
+
+```
+
 <!-- Section from "doc/guides/03.Usage.md.hbs" End -->
-
-<!-- Section from "doc/guides/04.Mixins.md.hbs" Start -->
-
-<a name="section-doc-guides-04-mixins-md"></a>
-Mixin
------
-
-### ApLocaleMixin
-
-This provides `.getLocale()` function, which returns a locale prop given it's context.
-
-
-
-
-<!-- Section from "doc/guides/04.Mixins.md.hbs" End -->
 
 
 <!-- Sections Start -->

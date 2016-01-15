@@ -16,13 +16,6 @@ let ApResizeMixin = {
     // Custom
     //--------------------
 
-
-    /**
-     * Handle resize.
-     * @returns {object} e - Resize event.
-     */
-    onResize: undefined,
-
     //--------------------
     // Specs
     //--------------------

@@ -14,7 +14,8 @@ module.exports = apeTmpl.indexJsBud({
     subclasses: [
         'ApLocaleMixin',
         'ApTouchMixin',
-        'ApResizeMixin'
+        'ApResizeMixin',
+        'ApStackMixin'
     ]
 });
 
