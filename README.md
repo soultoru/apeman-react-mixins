@@ -188,6 +188,44 @@ React.render(element, 'my-container', () => {
 + swipeDirection
 
 
+### ApResizeMixin
+
+Add window resize event handler.
+
+```jsx
+/**
+ * This is an example to use ApResizeMixin.
+ */
+"use strict";
+
+import React from 'react';
+import {ApResizeMixin} from 'apeman-react-mixins';
+
+let Component = React.createClass({
+    mixins: [
+        ApResizeMixin
+    ],
+    render () {
+        return (
+            <div>Foo</div>
+        )
+    },
+    /** Handler of window resize event */
+    onResize(e){
+        /*..*/
+    }
+
+});
+let element = (<div>
+    <Component>
+    </Component>
+</div>);
+
+React.render(element, 'my-container', () => {
+});
+
+```
+
 <!-- Section from "doc/guides/03.Usage.md.hbs" End -->
 
 <!-- Section from "doc/guides/04.Mixins.md.hbs" Start -->
