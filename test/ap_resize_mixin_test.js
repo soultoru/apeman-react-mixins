@@ -33,7 +33,7 @@ describe('ap-resize-mixin', () => {
             }
         });
         let root = React.createElement(MockClass, {
-            onResize(){
+            windowDidResize(){
             }
         });
         let html = ReactDOM.renderToString(root);
