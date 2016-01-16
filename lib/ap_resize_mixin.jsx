@@ -24,9 +24,6 @@ let ApResizeMixin = {
     // Lifecycle
     //--------------------
 
-    componentWillMount() {
-    },
-
     componentDidMount() {
         let s = this;
         if (s.windowDidResize) {
@@ -36,24 +33,10 @@ let ApResizeMixin = {
         }
     },
 
-    componentWillReceiveProps(nextProps) {
-        let s = this;
-    },
-
-    componentWillUpdate(nextProps, nextState) {
-        let s = this;
-    },
-
-    componentDidUpdate(prevProps, prevState) {
-        let s = this;
-    },
-
     componentWillUnmount() {
         let s = this;
         if (s.windowDidResize) {
             window.removeEventListener('resize', s.windowDidResize);
-        } else {
-            console.warn(HANDLER_NOT_IMPLEMENTED_WARNING);
         }
     }
 

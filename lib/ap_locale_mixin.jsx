@@ -39,34 +39,12 @@ let ApLocaleMixin = {
         return {
             [LOCALE_PROP_KEY]: s.props.locale || s.getLocale()
         }
-    },
+    }
 
     //--------------------
     // Lifecycle
     //--------------------
 
-    componentWillMount() {
-    },
-
-    componentDidMount() {
-        let s = this;
-    },
-
-    componentWillReceiveProps(nextProps) {
-        let s = this;
-    },
-
-    componentWillUpdate(nextProps, nextState) {
-        let s = this;
-    },
-
-    componentDidUpdate(prevProps, prevState) {
-        let s = this;
-    },
-
-    componentWillUnmount() {
-        let s = this;
-    }
 
 };
 

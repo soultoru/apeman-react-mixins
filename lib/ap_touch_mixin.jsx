@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 const TOUCH_HAMMER_KEY = "_apTouchHammer";
 
 function createTouchHammer(node, props) {
-    if(!node){
+    if (!node) {
         return;
     }
     let Hammer = require('hammerjs'),
@@ -78,6 +78,7 @@ let ApTouchMixin = {
     // Custom
     //--------------------
 
+    [TOUCH_HAMMER_KEY]: null,
 
     //--------------------
     // Specs
@@ -116,27 +117,12 @@ let ApTouchMixin = {
     // Lifecycle
     //--------------------
 
-    componentWillMount() {
-    },
-
     componentDidMount() {
         let s = this;
         let touchable = supportsTouch(s.props);
         if (touchable) {
             s[TOUCH_HAMMER_KEY] = createTouchHammer(ReactDOM.findDOMNode(s), s.props);
         }
-    },
-
-    componentWillReceiveProps(nextProps) {
-        let s = this;
-    },
-
-    componentWillUpdate(nextProps, nextState) {
-        let s = this;
-    },
-
-    componentDidUpdate(prevProps, prevState) {
-        let s = this;
     },
 
     componentWillUnmount() {
