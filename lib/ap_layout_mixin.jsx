@@ -16,21 +16,16 @@ let ApResizeMixin = {
     //--------------------
     // Custom
     //--------------------
-    _layoutIfNeeded(){
-        let s = this;
-
-        clearTimeout(s._layoutTimer);
-        s._layoutTimer = setTimeout(()=> {
-            s.doLayout();
-        }, LAYOUT_INTERVAL);
-    },
 
     /**
      * Reserve layout.
      */
-    setNeedsLayout(){
+    layout(){
         let s = this;
-        setTimeout(s._layoutIfNeeded, 0);
+        clearTimeout(s._layoutTimer);
+        s._layoutTimer = setTimeout(()=> {
+            s.doLayout();
+        }, LAYOUT_INTERVAL);
     },
 
     //--------------------
@@ -50,13 +45,13 @@ let ApResizeMixin = {
             console.warn(HANDLER_NOT_IMPLEMENTED_WARNING);
             return;
         }
-        window.addEventListener('resize', s._layoutIfNeeded);
-        s.setNeedsLayout();
+        window.addEventListener('resize', s.layout);
+        s.layout();
     },
 
     componentWillReceiveProps(nextProps) {
         let s = this;
-        s.setNeedsLayout();
+        s.layout();
     },
 
     componentWillUpdate(nextProps, nextState) {
@@ -69,7 +64,7 @@ let ApResizeMixin = {
 
     componentWillUnmount() {
         let s = this;
-        window.removeEventListener('resize', s._layoutIfNeeded);
+        window.removeEventListener('resize', s.layout);
     }
 
 };
