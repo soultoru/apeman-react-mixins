@@ -51,7 +51,7 @@ let ApResizeMixin = {
         }
         window.addEventListener('resize', s._layoutIfNeeded);
 
-        setTimeout(s._layoutIfNeeded, LAYOUT_INTERVAL / 2);
+        setTimeout(s._layoutIfNeeded, 10);
     },
 
     componentWillReceiveProps(nextProps) {
