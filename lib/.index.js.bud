@@ -16,6 +16,7 @@ module.exports = apeTmpl.indexJsBud({
         'ApTouchMixin',
         'ApLayoutMixin',
         'ApResizeMixin',
+        'ApSpinMixin',
         'ApStackMixin'
     ]
 });
