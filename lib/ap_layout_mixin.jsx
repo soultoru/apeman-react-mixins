@@ -16,13 +16,13 @@ let ApResizeMixin = {
     //--------------------
     // Custom
     //--------------------
-    _layoutIfNeeded(immidiate){
+    _layoutIfNeeded(){
         let s = this;
 
         clearTimeout(s._layoutTimer);
         s._layoutTimer = setTimeout(()=> {
             s.doLayout();
-        }, immidiate ? 0 : LAYOUT_INTERVAL);
+        }, LAYOUT_INTERVAL);
     },
 
     /**
@@ -51,13 +51,12 @@ let ApResizeMixin = {
             return;
         }
         window.addEventListener('resize', s._layoutIfNeeded);
-        s._layoutIfNeeded(true);
-        s._layoutIfNeeded();
+        setNeedsLayout();
     },
 
     componentWillReceiveProps(nextProps) {
         let s = this;
-        setTimeout(s._layoutIfNeeded, LAYOUT_INTERVAL / 2);
+        setNeedsLayout();
     },
 
     componentWillUpdate(nextProps, nextState) {
