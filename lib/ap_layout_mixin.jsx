@@ -51,12 +51,12 @@ let ApResizeMixin = {
             return;
         }
         window.addEventListener('resize', s._layoutIfNeeded);
-        setNeedsLayout();
+        s.setNeedsLayout();
     },
 
     componentWillReceiveProps(nextProps) {
         let s = this;
-        setNeedsLayout();
+        s.setNeedsLayout();
     },
 
     componentWillUpdate(nextProps, nextState) {
