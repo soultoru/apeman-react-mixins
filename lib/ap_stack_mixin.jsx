@@ -50,6 +50,26 @@ const ApStackMixin = {
         });
     },
 
+    /**
+     * Bind stacker events.
+     * @param {Stacker} stacker - A stacker instance.
+     */
+    bindStacker(stacker) {
+        let s = this;
+        s._addStackerListener('push', s.stackedViewDidPush);
+        s._addStackerListener('pop', s.stackedViewDidPop);
+    },
+
+    /**
+     * Unbind stacker events.
+     * @param {Stacker} stacker - A stacker instance.
+     */
+    unbindStacker(stacker) {
+        let s = this;
+        s._removeStackerListener('push', s.stackedViewDidPush);
+        s._removeStackerListener('pop', s.stackedViewDidPop);
+    },
+
     //--------------------
     // Specs
     //--------------------
@@ -108,28 +128,8 @@ const ApStackMixin = {
     },
 
     //------------------
-    // Custom
+    // Private
     //------------------
-
-    /**
-     * Bind stacker events.
-     * @param {Stacker} stacker - A stacker instance.
-     */
-    bindStacker(stacker) {
-        let s = this;
-        s._addStackerListener('push', s.stackedViewDidPush);
-        s._addStackerListener('pop', s.stackedViewDidPop);
-    },
-
-    /**
-     * Unbind stacker events.
-     * @param {Stacker} stacker - A stacker instance.
-     */
-    unbindStacker(stacker) {
-        let s = this;
-        s._removeStackerListener('push', s.stackedViewDidPush);
-        s._removeStackerListener('pop', s.stackedViewDidPop);
-    },
 
     _addStackerListener(event, listner){
         let s = this,
