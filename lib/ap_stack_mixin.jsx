@@ -73,6 +73,13 @@ const ApStackMixin = {
     // Lifecycle
     //--------------------
 
+    componentWillMount() {
+        let s = this;
+        let {props} = s;
+
+        s.bindStacker(props.stacker);
+    },
+
     componentDidMount() {
         let s = this;
         let {props} = s;
@@ -83,10 +90,63 @@ const ApStackMixin = {
 
     componentWillReceiveProps(nextProps) {
         let s = this;
+        let {props} = s;
+
         if (nextProps.stackInsets) {
             s.setStackInsets(nextProps.stackInsets);
         }
+        if (nextProps.stacker) {
+            s.unbindStacker(props.stacker);
+            s.bindStacker(nextProps.stacker);
+        }
+    },
+
+    componentWillUnmount() {
+        let s = this;
+        let {props} = s;
+        s.unbindStacker(props.stacker);
+    },
+
+    //------------------
+    // Custom
+    //------------------
+
+    /**
+     * Bind stacker events.
+     * @param {Stacker} stacker - A stacker instance.
+     */
+    bindStacker(stacker) {
+        let s = this;
+        s._addStackerListener('push', s.stackedViewDidPush);
+        s._addStackerListener('pop', s.stackedViewDidPop);
+    },
+
+    /**
+     * Unbind stacker events.
+     * @param {Stacker} stacker - A stacker instance.
+     */
+    unbindStacker(stacker) {
+        let s = this;
+        s._removeStackerListener('push', s.stackedViewDidPush);
+        s._removeStackerListener('pop', s.stackedViewDidPop);
+    },
+
+    _addStackerListener(event, listner){
+        let s = this,
+            {stacker} = s.props;
+        if (listner && stacker) {
+            stacker.addListener(event, listner);
+        }
+    },
+
+    _removeStackerListener(event, listner){
+        let s = this,
+            {stacker} = s.props;
+        if (listner && stacker) {
+            stacker.removeListener(event, listner);
+        }
     }
+
 };
 
 module.exports = Object.freeze(ApStackMixin);

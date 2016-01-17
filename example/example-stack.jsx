@@ -15,6 +15,14 @@ let Component = React.createClass({
         return (
             <div>{s.renderStack()}</div>
         )
+    },
+
+    stackedViewDidPush(view) {
+
+    },
+
+    stackedViewDidPop(view){
+
     }
 
 });

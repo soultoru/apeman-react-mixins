@@ -33,7 +33,7 @@ describe('ap-stack-mixin', () => {
             }
         });
         let root = React.createElement(MockClass, {
-            stacker: ApViewStack.Stacker
+            stacker: new (ApViewStack.Stacker)()
         });
         let html = ReactDOM.renderToString(root);
         assert.ok(html);
