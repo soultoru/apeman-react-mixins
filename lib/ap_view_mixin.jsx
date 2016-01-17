@@ -19,7 +19,7 @@ const ApStackMixin = {
     popThisView(){
         let s = this;
         let {props} = s;
-        props.popThisView(props.viewId);
+        props.viewPop(props.viewId);
     },
 
     //--------------------
