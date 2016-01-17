@@ -20,7 +20,7 @@ const ApStackMixin = {
         let s = this;
         let {props} = s;
         let topView = props.viewTop();
-        let isTop = topView.viewId === props.viewId;
+        let isTop = topView.id === props.viewId;
         if (!isTop) {
             console.warn('The top view of current stack is not this view.');
             return;
