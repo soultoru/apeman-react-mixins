@@ -1,6 +1,6 @@
 {
   "name": "apeman-react-mixins",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "React mixin set of apeman.",
   "main": "lib",
   "scripts": {
