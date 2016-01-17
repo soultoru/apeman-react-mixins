@@ -1,6 +1,6 @@
 /**
  * Mixin to add uuid.
- * @constructor ApUuidMixin
+ * @constructor ApUUIDMixin
  */
 
 "use strict";
@@ -8,8 +8,8 @@
 import React, {PropTypes as types} from 'react';
 import uuid from 'uuid';
 
-/** @lends ApUuidMixin */
-let ApUuidMixin = {
+/** @lends ApUUIDMixin */
+let ApUUIDMixin = {
 
     //--------------------
     // Custom
@@ -31,4 +31,4 @@ let ApUuidMixin = {
     }
 };
 
-module.exports = Object.freeze(ApUuidMixin);
+module.exports = Object.freeze(ApUUIDMixin);

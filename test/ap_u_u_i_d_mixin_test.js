@@ -1,15 +1,15 @@
 /**
- * Test case for apUuidMixin.
+ * Test case for apUUIDMixin.
  * Runs with mocha.
  */
 "use strict";
 
-const ApUUIDMixin = require('../lib/ap_uuid_mixin.js'),
+const ApUUIDMixin = require('../lib/ap_u_u_i_d_mixin.js'),
     React = require('react'),
     ReactDOM = require('react-dom/server'),
     assert = require('assert');
 
-describe('ap-uuid-mixin', () => {
+describe('ap-u-u-i-d-mixin', () => {
 
     before((done) => {
         done();
@@ -20,7 +20,7 @@ describe('ap-uuid-mixin', () => {
     });
 
 
-    it('Ap uuid mixin', (done) => {
+    it('Ap u u i d mixin', (done) => {
         const MockClass = React.createClass({
             mixins: [
                 ApUUIDMixin
