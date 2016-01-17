@@ -28,12 +28,23 @@ describe('ap-view-mixin', () => {
             ],
             render(){
                 return React.createElement('div', {})
+            },
+            componentWillMount(){
+                let s = this;
+                s.pushViewToCurrentStack({}, {}, 'NONE');
+                s.popViewFromCurrentStack({}, {}, 'NONE');
             }
         });
         let root = React.createElement(MockClass, {
             viewId: 124,
             viewWay: 'PUSH_LEFT',
             viewPop(){
+
+            },
+            viewPush(){
+
+            },
+            viewTop(){
 
             }
         });

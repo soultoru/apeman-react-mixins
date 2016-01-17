@@ -14,12 +14,39 @@ const ApStackMixin = {
     //--------------------
 
     /**
-     * Pop this view from parent stack.
+     * Pop this view from the current stack only if this view is the top.
      */
-    popThisView(){
+    popThisViewFromCurrentStack(){
         let s = this;
         let {props} = s;
-        props.viewPop(props.viewId);
+        let topView = props.viewTop();
+        let isTop = topView.viewId === props.viewId;
+        if (!isTop) {
+            console.warn('The top view of current stack is not this view.');
+            return;
+        }
+        s.popViewFromCurrentStack();
+    },
+
+    /**
+     * Pop a view from the current stack.
+     */
+    popViewFromCurrentStack(){
+        let s = this;
+        let {props} = s;
+        props.viewPop();
+    },
+
+    /**
+     * Push a view to the current stack.
+     * @param {object} view - View component class.
+     * @param {object} params - View params.
+     * @param {string} way - View push way.
+     */
+    pushViewToCurrentStack(view, params, way){
+        let s = this;
+        let {props} = s;
+        props.viewPush(view, params, way);
     },
 
     //--------------------
@@ -29,7 +56,9 @@ const ApStackMixin = {
     statics: {
         viewId: types.string.isRequired,
         viewWay: types.string.isRequired,
-        viewPop: types.func.isRequired
+        viewPush: types.func.isRequired,
+        viewPop: types.func.isRequired,
+        viewTop: types.func.isRequired
     },
 
     propTypes: {},
@@ -41,7 +70,10 @@ const ApStackMixin = {
     getDefaultProps() {
         return {
             viewId: null,
-            viewWay: null
+            viewWay: null,
+            viewPush: null,
+            viewPop: null,
+            viewTop: null
         }
     },
 
