@@ -55,7 +55,9 @@ let ApResizeMixin = {
 
     componentWillUnmount() {
         let s = this;
+        clearTimeout(s._layoutTimer);
         window.removeEventListener('resize', s.layout);
+        delete  s._layoutTimer;
     }
 
 };
