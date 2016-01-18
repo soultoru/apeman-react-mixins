@@ -31,6 +31,22 @@ describe('ap-spin-mixin', () => {
                 return React.createElement('div', {},
                     s.props.children
                 );
+            },
+            componentWillMount(){
+                let s = this;
+                assert.ok(!s.hasSpin('hoge'));
+                s.incrementSpinCount('hoge');
+                s.incrementSpinCount('fuge');
+                assert.ok(s.hasSpin('hoge'));
+                assert.ok(s.hasSpin('fuge'));
+                assert.equal(s.getSpinCount('hoge'), 1);
+                s.decrementSpinCount('hoge');
+                assert.ok(!s.hasSpin('hoge'));
+                assert.equal(s.getSpinCount('hoge'), 0);
+                assert.ok(s.hasSpin('fuge'));
+                s.resetSpinCount('fuge');
+                assert.equal(s.getSpinCount('fuge'), 0);
+                assert.ok(!s.hasSpin('fuge'));
             }
         });
         let root = React.createElement(MockClass, {});

@@ -17,45 +17,65 @@ let ApSpinMixin = {
     //--------------------
 
     /**
-     * Count active spin
+     * Count active spin.
+     * @param {string} name - Name of spin.
      * @returns {number} - Number of spins.
      */
-    countSpin(){
+    getSpinCount(name){
         let s = this;
-        return Number(s.state[SPIN_PROP_KEY] || 0);
+        name = name || 'default';
+        let counts = s.state[SPIN_PROP_KEY] || {};
+        return Number(counts[name] || 0);
+    },
+
+    /**
+     * Set active spin count.
+     * @param {string} name - Name of spin.
+     * @param {number} count  - Count to set.
+     */
+    setSpinCount(name, count){
+        let s = this;
+        name = name || 'default';
+        let counts = s.state[SPIN_PROP_KEY] || {};
+        counts[name] = count;
+        s.setState({[SPIN_PROP_KEY]: counts});
     },
 
     /**
      * Check if spin exists.
      * @returns {boolean} - Exists or not.
      */
-    hasSpin(){
+    hasSpin(name){
         let s = this;
-        return s.countSpin() > 0;
+        name = name || 'default';
+        return s.getSpinCount(name) > 0;
     },
 
     /**
      * Increment spin count.
+     * @param {string} name - Name of spin.
      */
-    incrementSpin(){
+    incrementSpinCount(name){
         let s = this;
-        s.setState({[SPIN_PROP_KEY]: s.countSpin() + 1});
+        s.setSpinCount(name, s.getSpinCount(name) + 1);
     },
 
     /**
      * Decrement spin count.
+     * @param {string} name - Name of spin.
      */
-    decrementSpin(){
+    decrementSpinCount(name){
         let s = this;
-        s.setState({[SPIN_PROP_KEY]: s.countSpin() - 1});
+        s.setSpinCount(name, s.getSpinCount(name) - 1);
     },
 
     /**
      * Rest spin count
+     * @param {string} name - Name of spin.
      */
-    resetSpin(){
+    resetSpinCount(name){
         let s = this;
-        s.setState({[SPIN_PROP_KEY]: 0});
+        s.setSpinCount(name, 0);
     },
 
     //--------------------
@@ -64,7 +84,7 @@ let ApSpinMixin = {
     getInitialState(){
         let s = this;
         return {
-            [SPIN_PROP_KEY]: 0
+            [SPIN_PROP_KEY]: {}
         }
     }
 
