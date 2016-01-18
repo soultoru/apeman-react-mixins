@@ -19,6 +19,12 @@ describe('ap-toast-mixin', () => {
         done();
     });
 
+    it('Toaster', (done) => {
+        let toaster = new (ApToastMixin.statics.Toaster)({});
+        assert.ok(toaster);
+        done();
+    });
+
     it('Ap toast mixin', (done) => {
 
         const MockClass = React.createClass({
@@ -28,6 +34,11 @@ describe('ap-toast-mixin', () => {
             render(){
                 let s = this;
                 return React.createElement('div', {});
+            },
+            componentWillMount(){
+                let s = this;
+                s.initToaster();
+                s.toast('hoge');
             }
         });
 

@@ -8,7 +8,7 @@
 import React, {PropTypes as types} from 'react';
 import {inherits} from 'util';
 import EventEmitter from 'events';
-const TOAST_MESSAGE_KEY = "_apToastMessage";
+const TOAST_TOASTER_KEY = "_apToastToaster";
 
 /** Class to hold toast data */
 class Toaster extends EventEmitter {
@@ -16,7 +16,6 @@ class Toaster extends EventEmitter {
         super()
     }
 }
-
 
 /** @lends ApToastMixin */
 let ApToastMixin = {
@@ -31,7 +30,12 @@ let ApToastMixin = {
      */
     getToaster(){
         let s = this;
-        return s.props.toaster || s.context[TOAST_MESSAGE_KEY];
+        let toaster = s._toaster || s.context[TOAST_TOASTER_KEY];
+        if (!toaster) {
+            let msg = "Toaster no initialized. You need to call `.initToaster()` on this component or one of it's parents";
+            throw new Error(msg);
+        }
+        return toaster;
     },
 
     /**
@@ -73,30 +77,34 @@ let ApToastMixin = {
         s.toast(message, 'error');
     },
 
+    /**
+     * Decorate toast context.
+     */
+    initToaster(){
+        let s = this;
+        s._toaster = new Toaster();
+    },
+
     //--------------------
     // Specs
     //--------------------
-
-    propTypes: {
-        toaster: types.instanceOf(Toaster)
-    },
 
     statics: {
         Toaster: Toaster
     },
 
     contextTypes: {
-        [TOAST_MESSAGE_KEY]: types.object
+        [TOAST_TOASTER_KEY]: types.object
     },
 
     childContextTypes: {
-        [TOAST_MESSAGE_KEY]: types.object
+        [TOAST_TOASTER_KEY]: types.object
     },
 
     getChildContext(){
         let s = this;
         return {
-            [TOAST_MESSAGE_KEY]: s.getToaster()
+            [TOAST_TOASTER_KEY]: s.getToaster()
         };
     }
 
