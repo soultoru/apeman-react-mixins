@@ -12,6 +12,7 @@ module.exports = apeTmpl.indexJsBud({
     desc: pkg.description,
     dirname: __dirname,
     subclasses: [
+        'ApToastMixin',
         'ApLocaleMixin',
         'ApLayoutMixin',
         'ApResizeMixin',

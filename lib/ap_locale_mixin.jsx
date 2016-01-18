@@ -22,12 +22,17 @@ let ApLocaleMixin = {
      */
     getLocale(){
         let s = this;
-        return s.context[LOCALE_PROP_KEY];
+        return s.props.locale || s.context[LOCALE_PROP_KEY];
     },
 
     //--------------------
     // Specs
     //--------------------
+
+    propTypes: {
+        locale: types.object
+    },
+
     contextTypes: {
         [LOCALE_PROP_KEY]: types.object
     },
@@ -37,7 +42,7 @@ let ApLocaleMixin = {
     getChildContext(){
         let s = this;
         return {
-            [LOCALE_PROP_KEY]: s.props.locale || s.getLocale()
+            [LOCALE_PROP_KEY]: s.getLocale()
         }
     }
 

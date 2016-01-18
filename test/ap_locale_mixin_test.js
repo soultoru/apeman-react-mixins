@@ -11,7 +11,6 @@ const ApLocaleMixin = require('../lib/ap_locale_mixin.js'),
 
 describe('ap-locale-mixin', () => {
 
-
     before((done) => {
         done();
     });
@@ -19,7 +18,6 @@ describe('ap-locale-mixin', () => {
     after((done) => {
         done();
     });
-
 
     it('Render component.', (done) => {
 
@@ -36,7 +34,6 @@ describe('ap-locale-mixin', () => {
                 );
             }
         });
-
 
         let grandChild = React.createElement(MockClass, {});
         let child = React.createElement(MockClass, {
