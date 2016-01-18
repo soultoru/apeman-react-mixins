@@ -78,6 +78,19 @@ let ApSpinMixin = {
         s.setSpinCount(name, 0);
     },
 
+    /**
+     * Add spin count while active.
+     * @param {string} name - Name of spin.
+     * @param {function} action - Action to do.
+     */
+    spinWhile(name, action){
+        let s = this;
+        s.incrementSpinCount(name);
+        action(() => {
+            s.decrementSpinCount(name);
+        });
+    },
+
     //--------------------
     // Specs
     //--------------------
