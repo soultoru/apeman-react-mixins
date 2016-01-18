@@ -37,7 +37,7 @@ let ApSpinMixin = {
     /**
      * Increment spin count.
      */
-    pushSpin(){
+    incrementSpin(){
         let s = this;
         s.setState({[SPIN_PROP_KEY]: s.countSpin() + 1});
     },
@@ -45,7 +45,7 @@ let ApSpinMixin = {
     /**
      * Decrement spin count.
      */
-    popSpin(){
+    decrementSpin(){
         let s = this;
         s.setState({[SPIN_PROP_KEY]: s.countSpin() - 1});
     },
