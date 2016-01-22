@@ -8,7 +8,7 @@
 import React, {PropTypes as types} from 'react';
 
 const HANDLER_NOT_IMPLEMENTED_WARNING = '[ApLayoutMixin] Should implement doLayout method.';
-const LAYOUT_INTERVAL = 40;
+const LAYOUT_INTERVAL = 80;
 
 /** @lends ApResizeMixin */
 let ApResizeMixin = {
