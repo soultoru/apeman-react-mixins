@@ -35,7 +35,7 @@ let ApPageMixin = {
     pageHeaderStyle(state){
         let s = this;
         return {
-            maxWidth: state.pageMainWidth
+            maxWidth: state.pageMainWidth + 1
         }
     },
 
@@ -50,8 +50,8 @@ let ApPageMixin = {
     /**
      * Register page main stack.
      * @param {string} name - Name of stack
-     * @param {object} view - Root view component
-     * @param {object} props - Props for the root view.
+     * @param {object} [view] - Root view component
+     * @param {object} [props] - Props for the root view.
      */
     registerPageStack(name, view, props){
         let s = this;
