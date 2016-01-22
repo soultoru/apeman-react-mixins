@@ -1,10 +1,10 @@
 /**
  * Mixin for stackable views
  */
-import React, {PropTypes as types} from 'react';
-import {ApViewStack} from 'apeman-react-view';
 "use strict";
 
+import React, {PropTypes as types} from 'react';
+import {ApViewStack} from 'apeman-react-view';
 
 /** @lends ApStackMixin */
 const ApStackMixin = {
@@ -61,12 +61,6 @@ const ApStackMixin = {
         viewTop: types.func.isRequired
     },
 
-    propTypes: {},
-
-    getInitialState() {
-        return {};
-    },
-
     getDefaultProps() {
         return {
             viewId: null,
@@ -75,30 +69,6 @@ const ApStackMixin = {
             viewPop: null,
             viewTop: null
         }
-    },
-
-    //--------------------
-    // Lifecycle
-    //--------------------
-
-    componentWillMount() {
-        let s = this;
-        let {props} = s;
-    },
-
-    componentDidMount() {
-        let s = this;
-        let {props} = s;
-    },
-
-    componentWillReceiveProps(nextProps) {
-        let s = this;
-        let {props} = s;
-    },
-
-    componentWillUnmount() {
-        let s = this;
-        let {props} = s;
     }
 
 };
