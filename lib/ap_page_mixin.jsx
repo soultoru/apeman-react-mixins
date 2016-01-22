@@ -39,8 +39,8 @@ let ApPageMixin = {
         }
     },
 
-    /** Insets for main stack of page. */
-    pageMainStackInsets(state){
+    /** Insets for insets of main. */
+    pageMainInsets(state){
         let s = this;
         return {
             top: state.pageHeaderHeight
@@ -49,12 +49,14 @@ let ApPageMixin = {
 
     /**
      * Register page main stack.
+     * @param {string} name - Name of stack
      * @param {object} view - Root view component
      * @param {object} props - Props for the root view.
      */
-    registerPageMainStack(view, props){
+    registerPageStack(name, view, props){
         let s = this;
-        s._pageMainStack = new (ApViewStack.Stacker)({
+        s._pageStacks = s._pageStacks || {};
+        s._pageStacks[name] = new (ApViewStack.Stacker)({
             root: view,
             rootProps: props
         });
@@ -62,18 +64,19 @@ let ApPageMixin = {
 
     /**
      * Get page main stack.
+     * @param {string} name - Name of stack
      * @returns {ApViewStack.Stacker}
      */
-    getPageMainStack(){
+    getPageStack(name){
         let s = this;
-        let stack = s._pageMainStack;
+        let stack = s._pageStacks[name];
         if (!stack) {
-            throw new Error('Page main stack not found. Call .registerPageMainStack() on componentWillMount.')
+            throw new Error('Stack not found. Call .registerPageStack() on componentWillMount.')
         }
         return stack;
     },
 
-    _pageMainStack: null,
+    _pageStacks: null,
 
     //--------------------
     // Specs
