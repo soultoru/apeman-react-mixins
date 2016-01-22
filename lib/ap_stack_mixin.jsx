@@ -56,8 +56,8 @@ const ApStackMixin = {
      */
     bindStacker(stacker) {
         let s = this;
-        s._addStackerListener('push', s.stackedViewDidPush);
-        s._addStackerListener('pop', s.stackedViewDidPop);
+        s._addStackerListener(stacker, 'push', s.stackedViewDidPush);
+        s._addStackerListener(stacker, 'pop', s.stackedViewDidPop);
     },
 
     /**
@@ -66,8 +66,8 @@ const ApStackMixin = {
      */
     unbindStacker(stacker) {
         let s = this;
-        s._removeStackerListener('push', s.stackedViewDidPush);
-        s._removeStackerListener('pop', s.stackedViewDidPop);
+        s._removeStackerListener(stacker, 'push', s.stackedViewDidPush);
+        s._removeStackerListener(stacker, 'pop', s.stackedViewDidPop);
     },
 
     /**
@@ -153,17 +153,15 @@ const ApStackMixin = {
     // Private
     //------------------
 
-    _addStackerListener(event, listner){
-        let s = this,
-            {stacker} = s.props;
+    _addStackerListener(stacker, event, listner){
+        let s = this;
         if (listner && stacker) {
             stacker.addListener(event, listner);
         }
     },
 
-    _removeStackerListener(event, listner){
-        let s = this,
-            {stacker} = s.props;
+    _removeStackerListener(stacker, event, listner){
+        let s = this;
         if (listner && stacker) {
             stacker.removeListener(event, listner);
         }
