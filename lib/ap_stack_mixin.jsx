@@ -70,6 +70,28 @@ const ApStackMixin = {
         s._removeStackerListener('pop', s.stackedViewDidPop);
     },
 
+    /**
+     * Get width of scrollable content in the top view.
+     * @returns {number|null}
+     */
+    getStackedScrollWidth(){
+        let s = this,
+            {stacker} = s.props;
+        let topView = stacker && stacker.topView();
+        if (!topView) {
+            return null;
+        }
+        let wrapElm = document && document.getElementById(`view-wrap-${topView.id}`);
+        if (!wrapElm) {
+            return null;
+        }
+        let bodyElm = wrapElm.querySelector('.ap-view-body');
+        if (!bodyElm) {
+            return null;
+        }
+        return bodyElm.scrollWidth || null;
+    },
+
     //--------------------
     // Specs
     //--------------------
