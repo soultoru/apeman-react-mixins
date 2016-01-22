@@ -90,4 +90,4 @@ let ApPageMixin = {
 
 };
 
-export default Object.freeze(ApPageMixin);
+module.exports = Object.freeze(ApPageMixin);
