@@ -51,12 +51,16 @@ let ApPageMixin = {
     /**
      * Register page stack.
      * @param {string} name - Name of stack
-     * @param {object} [options] - Stacker options.
+     * @param {object} [root] - Root root component
+     * @param {object} [rootProps] - Props for the root component.
      */
-    registerPageStack(name, options){
+    registerPageStack(name, root, rootProps){
         let s = this;
         s._pageStacks = s._pageStacks || {};
-        let stacker = new (ApViewStack.Stacker)(options);
+        let stacker = new (ApViewStack.Stacker)({
+            root: root,
+            rootProps: rootProps
+        });
         stacker.stackName = name;
         stacker.addListener('push', s.pageStackViewDidPush);
         stacker.addListener('pop', s.pageStackViewDidPop);
