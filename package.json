@@ -28,6 +28,7 @@
     "argx": "^1.3.1",
     "async": "^1.5.2",
     "hammerjs": "^2.0.6",
+    "react-addons-pure-render-mixin": "^0.14.6",
     "uuid": "^2.0.1"
   },
   "devDependencies": {

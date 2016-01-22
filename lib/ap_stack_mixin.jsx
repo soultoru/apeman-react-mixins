@@ -1,6 +1,7 @@
 /**
  * Mixin to handle stack
  */
+
 import React, {PropTypes as types} from 'react';
 import {ApViewStack} from 'apeman-react-view';
 "use strict";
