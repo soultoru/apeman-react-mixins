@@ -6,16 +6,9 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
-import {inherits} from 'util';
-import EventEmitter from 'events';
-const TOAST_TOASTER_KEY = "_apToastToaster";
+import {Toaster} from 'apeman-react-toast';
 
-/** Class to hold toast data */
-class Toaster extends EventEmitter {
-    constructor() {
-        super()
-    }
-}
+const TOAST_TOASTER_KEY = "_apToastToaster";
 
 /** @lends ApToastMixin */
 let ApToastMixin = {
@@ -30,9 +23,9 @@ let ApToastMixin = {
      */
     getToaster(){
         let s = this;
-        let toaster = s._toaster || s.context[TOAST_TOASTER_KEY];
+        let toaster = s[TOAST_TOASTER_KEY] || s.context[TOAST_TOASTER_KEY];
         if (!toaster) {
-            let msg = "Toaster no initialized. You need to call `.initToaster()` on this component or one of it's parents";
+            let msg = "Toaster no initialized. You need to call `.registerToaster()` on this component or one of it's parents";
             throw new Error(msg);
         }
         return toaster;
@@ -80,18 +73,14 @@ let ApToastMixin = {
     /**
      * Decorate toast context.
      */
-    initToaster(){
+    registerToaster(options){
         let s = this;
-        s._toaster = new Toaster();
+        s[TOAST_TOASTER_KEY] = new Toaster(options);
     },
 
     //--------------------
     // Specs
     //--------------------
-
-    statics: {
-        Toaster: Toaster
-    },
 
     contextTypes: {
         [TOAST_TOASTER_KEY]: types.object

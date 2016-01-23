@@ -7,7 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 
-const LOCALE_PROP_KEY = "_apLocale";
+const LOCALE_LOCALE_KEY = "_apLocale";
 
 /** @lends ApLocaleMixin */
 let ApLocaleMixin = {
@@ -22,27 +22,37 @@ let ApLocaleMixin = {
      */
     getLocale(){
         let s = this;
-        return s.props.locale || s.context[LOCALE_PROP_KEY];
+        let locale = s[LOCALE_LOCALE_KEY] || s.context[LOCALE_LOCALE_KEY];
+        if (!locale) {
+            let msg = "Locale no initialized. You need to call `.registerLocale()` on this component or one of it's parents";
+            throw new Error(msg);
+        }
+        return locale;
+    },
+
+    /**
+     * Register locale data.
+     * @param {object} locale
+     */
+    registerLocale(locale){
+        let s = this;
+        s[LOCALE_LOCALE_KEY] = locale;
     },
 
     //--------------------
     // Specs
     //--------------------
 
-    propTypes: {
-        locale: types.object
-    },
-
     contextTypes: {
-        [LOCALE_PROP_KEY]: types.object
+        [LOCALE_LOCALE_KEY]: types.object
     },
     childContextTypes: {
-        [LOCALE_PROP_KEY]: types.object
+        [LOCALE_LOCALE_KEY]: types.object
     },
     getChildContext(){
         let s = this;
         return {
-            [LOCALE_PROP_KEY]: s.getLocale()
+            [LOCALE_LOCALE_KEY]: s.getLocale()
         }
     }
 
