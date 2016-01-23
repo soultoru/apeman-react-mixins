@@ -48,6 +48,11 @@ let ApPageMixin = {
         };
     },
 
+    registerPageViews(views){
+        let s = this;
+        s._pageViewResolver = new (ApViewStack.Resolver)(views);
+    },
+
     /**
      * Register page stack.
      * @param {string} name - Name of stack
@@ -57,9 +62,14 @@ let ApPageMixin = {
     registerPageStack(name, root, rootProps){
         let s = this;
         s._pageStacks = s._pageStacks || {};
+        let resolver = s._pageViewResolver;
+        if (!resolver) {
+            throw new Error('Resolver not found call `.registerPageViews()` before this.');
+        }
         let stacker = new (ApViewStack.Stacker)({
             root: root,
-            rootProps: rootProps
+            rootProps: rootProps,
+            resolver: resolver.resolve.bind(resolver)
         });
         stacker.stackName = name;
         stacker.addListener('push', s.pageStackViewDidPush);
@@ -88,9 +98,40 @@ let ApPageMixin = {
         let s = this;
         let stack = s._pageStacks[name];
         if (!stack) {
-            throw new Error('Stack not found. Call .registerPageStack() on componentWillMount.')
+            throw new Error('Stack not found. Call `.registerPageStack()` on componentWillMount.')
         }
         return stack;
+    },
+
+    /**
+     * Create page url from stacker
+     * @param stacker
+     * @returns {*}
+     */
+    pageURLWithStacker(stacker){
+        let s = this;
+        return `/${s.pageName}/${stacker.stackName}/${stacker.toURL()}`;
+    },
+
+
+    /**
+     * Restore page url
+     * @param url
+     */
+    restorePageURL(url){
+        let s = this;
+        let urlComponents = url.replace(/^\//, '').split(/\//g);
+        if (urlComponents[0] === s.pageName) {
+            urlComponents.shift();
+        }
+        let stackName = urlComponents.shift(),
+            stackerURL = urlComponents.join('/');
+        try {
+            let stacker = s.getPageStack(stackName);
+            stacker.fromURL(stackerURL);
+        } catch (e) {
+            console.warn(`${[s.pageName]} Failed to restore url: ${url}`);
+        }
     },
 
     //--------------------
@@ -108,6 +149,12 @@ let ApPageMixin = {
     //--------------------
     // Lifecycle
     //--------------------
+    componentWillMount() {
+        let s = this;
+        if (!s.pageName) {
+            throw new Error('pageName is required.');
+        }
+    },
     componentWillUnmount() {
         let s = this;
         for (let name of Object.keys(s._pageStacks || {})) {
@@ -119,7 +166,8 @@ let ApPageMixin = {
     // Private
     //------------------
 
-    _pageStacks: null
+    _pageStacks: null,
+    _pageViewResolver: null
 
 };
 

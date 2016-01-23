@@ -36,7 +36,8 @@ describe('ap-page-mixin', () => {
             },
             pageStackViewDidPop(){
 
-            }
+            },
+            pageName: 'hoge'
         });
         let root = React.createElement(MockClass),
             html = ReactDOM.renderToString(root);
