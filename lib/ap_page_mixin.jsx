@@ -120,6 +120,9 @@ let ApPageMixin = {
      */
     restorePageURL(url){
         let s = this;
+        if (!url) {
+            return;
+        }
         let urlComponents = url.replace(/^\//, '').split(/\//g);
         if (urlComponents[0] === s.pageName) {
             urlComponents.shift();
