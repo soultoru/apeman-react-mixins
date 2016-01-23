@@ -32,6 +32,10 @@ describe('ap-locale-mixin', () => {
                     s.props.children,
                     locale.foo
                 );
+            },
+            componentWillMount(){
+                let s = this;
+                s.registerLocale(s.props.locale);
             }
         });
 

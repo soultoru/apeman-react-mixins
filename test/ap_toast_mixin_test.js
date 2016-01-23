@@ -19,11 +19,6 @@ describe('ap-toast-mixin', () => {
         done();
     });
 
-    it('Toaster', (done) => {
-        let toaster = new (ApToastMixin.statics.Toaster)({});
-        assert.ok(toaster);
-        done();
-    });
 
     it('Ap toast mixin', (done) => {
 
@@ -37,7 +32,7 @@ describe('ap-toast-mixin', () => {
             },
             componentWillMount(){
                 let s = this;
-                s.initToaster();
+                s.registerToaster({});
                 s.toast('hoge');
             }
         });
