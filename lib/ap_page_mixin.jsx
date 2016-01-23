@@ -133,7 +133,7 @@ let ApPageMixin = {
             let stacker = s.getPageStack(stackName);
             stacker.fromURL(stackerURL);
         } catch (e) {
-            console.warn(`${[s.pageName]} Failed to restore url: ${url}`);
+            console.warn(`[${s.pageName}] Failed to restore url: ${url}`);
         }
     },
 
