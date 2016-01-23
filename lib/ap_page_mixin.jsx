@@ -105,8 +105,8 @@ let ApPageMixin = {
 
     /**
      * Create page url from stacker
-     * @param stacker
-     * @returns {*}
+     * @param {object} stacker - View stacker.
+     * @returns {string} - Page url
      */
     pageURLWithStacker(stacker){
         let s = this;
@@ -116,7 +116,7 @@ let ApPageMixin = {
 
     /**
      * Restore page url
-     * @param url
+     * @param {string} url
      */
     restorePageURL(url){
         let s = this;
