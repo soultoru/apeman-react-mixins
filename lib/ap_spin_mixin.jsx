@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import argx from 'argx';
 
 const SPIN_PROP_KEY = "_apSpin";
 
@@ -84,9 +85,16 @@ let ApSpinMixin = {
      * @param {function} action - Action to do.
      */
     spinWhile(name, action){
+        let args = argx(arguments);
+        name = args.shift('string');
+        action = args.pop('function');
         let s = this;
         s.incrementSpinCount(name);
-        action(() => {
+        let promise = action();
+        if (!promise) {
+            throw new Error('[ApSpinMixin] action must return a promise.');
+        }
+        return promise.then(() => {
             s.decrementSpinCount(name);
         });
     },

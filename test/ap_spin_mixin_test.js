@@ -47,6 +47,10 @@ describe('ap-spin-mixin', () => {
                 s.resetSpinCount('fuge');
                 assert.equal(s.getSpinCount('fuge'), 0);
                 assert.ok(!s.hasSpin('fuge'));
+
+                s.spinWhile('hoge', ()=> {
+                    return Promise.resolve('hoge');
+                });
             }
         });
         let root = React.createElement(MockClass, {});
