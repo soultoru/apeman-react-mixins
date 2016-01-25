@@ -15,6 +15,7 @@ let ApResizeMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apResizeMixed: true,
 
     //--------------------
     // Specs

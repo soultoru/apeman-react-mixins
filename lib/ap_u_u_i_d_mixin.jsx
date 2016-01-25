@@ -14,6 +14,7 @@ let ApUUIDMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apUUIDMixed: true,
 
     uuid: null,
 

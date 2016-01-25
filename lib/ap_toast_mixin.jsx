@@ -16,6 +16,7 @@ let ApToastMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apToastMixed: true,
 
     /**
      * Get current toast messages.

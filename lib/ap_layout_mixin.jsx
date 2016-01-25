@@ -16,6 +16,7 @@ let ApResizeMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apResizeMixed: true,
 
     _layoutTimer: null,
 

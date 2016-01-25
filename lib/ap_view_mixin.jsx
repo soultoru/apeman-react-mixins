@@ -12,6 +12,7 @@ const ApStackMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apStackMixed: true,
 
     /**
      * Pop this view from the current stack only if this view is the top.

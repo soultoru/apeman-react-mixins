@@ -14,6 +14,7 @@ let ApPageMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apPageMixed: true,
 
     /** Handle layout change of main */
     handlePageMainLayout(layout) {

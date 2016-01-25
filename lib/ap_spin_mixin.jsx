@@ -16,6 +16,7 @@ let ApSpinMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apSpinMixed: true,
 
     /**
      * Count active spin.

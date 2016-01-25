@@ -15,6 +15,7 @@ let ApLocaleMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apLocaleMixed: true,
 
     /**
      * Get locales
