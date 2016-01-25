@@ -14,6 +14,7 @@ const ApStackMixin = {
     //--------------------
     // Custom
     //--------------------
+    $apStackMixed: true,
 
     /**
      * Render a stack element.

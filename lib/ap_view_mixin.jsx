@@ -1,18 +1,18 @@
 /**
- * Mixin for stackable views
+ * Mixin for views
  */
 "use strict";
 
 import React, {PropTypes as types} from 'react';
 import {ApViewStack} from 'apeman-react-view';
 
-/** @lends ApStackMixin */
-const ApStackMixin = {
+/** @lends ApViewMixin */
+const ApViewMixin = {
 
     //--------------------
     // Custom
     //--------------------
-    $apStackMixed: true,
+    $apViewMixed: true,
 
     /**
      * Pop this view from the current stack only if this view is the top.
@@ -74,4 +74,4 @@ const ApStackMixin = {
 
 };
 
-module.exports = Object.freeze(ApStackMixin);
+module.exports = Object.freeze(ApViewMixin);
