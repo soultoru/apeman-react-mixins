@@ -27,8 +27,13 @@ let ApEnvMixin = {
 
     propTypes: {
         NODE_ENV: types.string.isRequired
-    }
+    },
 
+    getDefaultProps() {
+        return {
+            NODE_ENV: process.env.NODE_ENV
+        }
+    }
 
 };
 
