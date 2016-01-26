@@ -1,15 +1,15 @@
 /**
- * Test case for apEnvMixin.
+ * Test case for apSideMixin.
  * Runs with mocha.
  */
 "use strict";
 
-const ApEnvMixin = require('../lib/ap_env_mixin.js'),
+const ApSideMixin = require('../lib/ap_side_mixin.js'),
     React = require('react'),
     ReactDOM = require('react-dom/server'),
     assert = require('assert');
 
-describe('ap-env-mixin', () => {
+describe('ap-side-mixin', () => {
 
     before((done) => {
         done();
@@ -20,11 +20,10 @@ describe('ap-env-mixin', () => {
     });
 
 
-    it('Ap env mixin', (done) => {
-
+    it('Ap side mixin', (done) => {
         const MockClass = React.createClass({
             mixins: [
-                ApEnvMixin
+                ApSideMixin
             ],
             render(){
                 let s = this;
@@ -32,12 +31,11 @@ describe('ap-env-mixin', () => {
             },
             componentWillMount(){
                 let s = this;
-                assert.ok(s.isProductionEnv());
+                assert.ok(s.isSeverSide());
             }
         });
 
         let element = React.createElement(MockClass, {
-            NODE_ENV: 'production'
         });
         let html = ReactDOM.renderToString(element);
         assert.ok(html);

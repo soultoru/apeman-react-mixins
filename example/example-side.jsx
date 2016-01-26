@@ -1,24 +1,24 @@
 /**
- * This is an example to use ApEnvMixin.
+ * This is an example to use ApSideMixin.
  */
 "use strict";
 
 import React from 'react';
-import {ApEnvMixin} from 'apeman-react-mixins';
+import {ApSideMixin} from 'apeman-react-mixins';
 
 let Component = React.createClass({
     mixins: [
-        ApEnvMixin
+        ApSideMixin
     ],
     render () {
         let s = this;
         return (
-            <div>{s.isProductionEnv() ? null : 'Hi, there'}</div>
+            <div>{s.isClientSide() ? 'Client' : 'Server'}</div>
         )
     }
 });
 let element = (<div>
-    <Component NODE_ENV={process.env.NODE_ENV}>
+    <Component>
     </Component>
 </div>);
 

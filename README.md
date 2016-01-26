@@ -293,12 +293,46 @@ let Component = React.createClass({
     render () {
         let s = this;
         return (
-            <div>{s.isProduction() ? null : 'Hi, there'}</div>
+            <div>{s.isProductionEnv() ? null : 'Hi, there'}</div>
         )
     }
 });
 let element = (<div>
     <Component NODE_ENV={process.env.NODE_ENV}>
+    </Component>
+</div>);
+
+React.render(element, 'my-container', () => {
+});
+
+```
+
+### ApSideMixin
+
+Check server-side or client-side
+
+```jsx
+/**
+ * This is an example to use ApSideMixin.
+ */
+"use strict";
+
+import React from 'react';
+import {ApSideMixin} from 'apeman-react-mixins';
+
+let Component = React.createClass({
+    mixins: [
+        ApSideMixin
+    ],
+    render () {
+        let s = this;
+        return (
+            <div>{s.isClientSide() ? 'Client' : 'Server'}</div>
+        )
+    }
+});
+let element = (<div>
+    <Component>
     </Component>
 </div>);
 

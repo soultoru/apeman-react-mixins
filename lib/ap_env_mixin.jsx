@@ -1,5 +1,5 @@
 /**
- * Mixin to handle resize.
+ * Mixin to check env.
  * @constructor ApEnvMixin
  */
 
@@ -15,7 +15,11 @@ let ApEnvMixin = {
     //--------------------
     $apEnvMixed: true,
 
-    isProduction(){
+    /**
+     * Detect if env is production.
+     * @returns {boolean}
+     */
+    isProductionEnv(){
         let s = this,
             {props} = s;
         return props.NODE_ENV === 'production';
