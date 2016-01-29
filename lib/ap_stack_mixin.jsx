@@ -84,7 +84,7 @@ const ApStackMixin = {
     statics: {},
 
     propTypes: {
-        stacker: types.func.isRequired,
+        stacker: types.object.isRequired,
         stackInsets: types.object
     },
 
