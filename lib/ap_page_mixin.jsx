@@ -6,7 +6,6 @@
 "use strict";
 
 import React from 'react';
-import {ApViewStack} from 'apeman-react-view';
 
 /** @lends ApPageMixin */
 let ApPageMixin = {
@@ -49,33 +48,39 @@ let ApPageMixin = {
         };
     },
 
-    registerPageViews(views){
+    /**
+     * Register page view resolver.
+     * @param {object} resolver - A resolver instance
+     */
+    registerPageViewResolver(resolver){
         let s = this;
-        s._pageViewResolver = new (ApViewStack.Resolver)(views);
+        s._pageViewResolver = resolver;
     },
 
     /**
      * Register page stack.
      * @param {string} name - Name of stack
-     * @param {object} [root] - Root root component
-     * @param {object} [rootProps] - Props for the root component.
+     * @param {object} stacker - A stacker instance
      */
-    registerPageStack(name, root, rootProps){
+    registerPageViewStacker(name, stacker){
         let s = this;
         s._pageStacks = s._pageStacks || {};
         let resolver = s._pageViewResolver;
         if (!resolver) {
             throw new Error('Resolver not found call `.registerPageViews()` before this.');
         }
-        let stacker = new (ApViewStack.Stacker)({
-            root: root,
-            rootProps: rootProps,
-            resolver: resolver.resolve.bind(resolver)
-        });
         stacker.stackName = name;
         stacker.addListener('push', s.pageStackViewDidPush);
         stacker.addListener('pop', s.pageStackViewDidPop);
         s._pageStacks[name] = stacker;
+    },
+
+    registerPageViewStackers(stackers){
+        let s = this;
+        for (let name of Object.keys(stackers)) {
+            s.registerPageViewStacker(name, stackers[name]);
+        }
+
     },
 
     /**

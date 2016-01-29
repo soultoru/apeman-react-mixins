@@ -3,7 +3,6 @@
  */
 
 import React, {PropTypes as types} from 'react';
-import {ApViewStack} from 'apeman-react-view';
 "use strict";
 
 const INSETS_STATE_KEY = '_apStackInsets';
@@ -16,22 +15,6 @@ const ApStackMixin = {
     //--------------------
     $apStackMixed: true,
 
-    /**
-     * Render a stack element.
-     * @returns {object} - A react element.
-     */
-    renderStack(){
-        let s = this;
-        let {state, props} = s;
-        let insets = s.getStackInsets();
-        return <ApViewStack stacker={props.stacker}
-                            insetTop={insets.top || 0}
-                            insetRight={insets.right || 0}
-                            insetLeft={insets.left || 0}
-                            insetBottom={insets.bottom || 0}
-        >
-        </ApViewStack>;
-    },
     /**
      * Get insets of the stack.
      * @returns {object}
@@ -98,12 +81,10 @@ const ApStackMixin = {
     // Specs
     //--------------------
 
-    statics: {
-        Stacker: ApViewStack.Stacker
-    },
+    statics: {},
 
     propTypes: {
-        stacker: types.instanceOf(ApViewStack.Stacker).isRequired,
+        stacker: types.func.isRequired,
         stackInsets: types.object
     },
 

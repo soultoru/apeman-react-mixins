@@ -7,6 +7,7 @@
 const ApToastMixin = require('../lib/ap_toast_mixin.js'),
     React = require('react'),
     ReactDOM = require('react-dom/server'),
+    Toaster = require('apeman-react-toast')['Toaster'],
     assert = require('assert');
 
 describe('ap-toast-mixin', () => {
@@ -32,7 +33,7 @@ describe('ap-toast-mixin', () => {
             },
             componentWillMount(){
                 let s = this;
-                s.registerToaster({});
+                s.registerToaster(new Toaster({}));
                 s.toast('hoge');
             }
         });

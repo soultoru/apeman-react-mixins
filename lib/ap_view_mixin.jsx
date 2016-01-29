@@ -4,7 +4,6 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
-import {ApViewStack} from 'apeman-react-view';
 
 /** @lends ApViewMixin */
 const ApViewMixin = {

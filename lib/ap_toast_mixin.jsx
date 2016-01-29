@@ -6,7 +6,6 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
-import {Toaster} from 'apeman-react-toast';
 
 const TOAST_TOASTER_KEY = "_apToastToaster";
 
@@ -74,9 +73,9 @@ let ApToastMixin = {
     /**
      * Decorate toast context.
      */
-    registerToaster(options){
+    registerToaster(toaster){
         let s = this;
-        s[TOAST_TOASTER_KEY] = new Toaster(options);
+        s[TOAST_TOASTER_KEY] = toaster;
     },
 
     //--------------------
