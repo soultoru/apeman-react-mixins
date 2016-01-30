@@ -160,6 +160,7 @@ let ApPageMixin = {
     //--------------------
     componentWillMount() {
         let s = this;
+        s.pageName = s.pageName || (s.getPageName && s.getPageName());
         if (!s.pageName) {
             throw new Error('pageName is required.');
         }
