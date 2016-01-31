@@ -95,9 +95,15 @@ let ApSpinMixin = {
         if (!promise) {
             throw new Error('[ApSpinMixin] action must return a promise.');
         }
-        return promise.then(() => {
-            s.decrementSpinCount(name);
-        });
+        return promise
+            .then(result => {
+                s.decrementSpinCount(name);
+                return Promise.resolve(result);
+            })
+            .catch(err => {
+                s.decrementSpinCount(name);
+                return Promise.reject(err);
+            });
     },
 
     //--------------------
