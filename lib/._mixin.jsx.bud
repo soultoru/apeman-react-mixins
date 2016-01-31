@@ -1,0 +1,33 @@
+/**
+ * Bud file for mixin
+ */
+"use strict";
+
+const stringcase = require('stringcase');
+
+module.exports = [
+    'Env',
+    'Form',
+    'Layout',
+    'Locale',
+    'Page',
+    'Pure',
+    'Resize',
+    'Side',
+    'Spin',
+    'Stack',
+    'Toast',
+    'Touch',
+    'View'
+].map(name => ({
+    force: false,
+    mode: '644',
+    path: `ap_${stringcase.snakecase(name)}_mixin.jsx`,
+    data: {
+        name
+    }
+}));
+
+if (!module.parent) {
+    require('coz').render(__filename);
+}
