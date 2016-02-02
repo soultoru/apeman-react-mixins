@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import objnest from 'objnest';
 
 const LOCALE_LOCALE_KEY = "_apLocale";
 
@@ -37,7 +38,18 @@ let ApLocaleMixin = {
      */
     registerLocale(locale){
         let s = this;
-        s[LOCALE_LOCALE_KEY] = locale;
+
+        let dataSource = objnest.flatten(locale);
+
+        function resolveLocale(key) {
+            let resolved = dataSource[key];
+            if (!resolved) {
+                console.warn(`[locale] Unknown key: ${key}`);
+            }
+            return resolved;
+        }
+
+        s[LOCALE_LOCALE_KEY] = Object.assign(resolveLocale, locale);
     },
 
     //--------------------
@@ -45,10 +57,10 @@ let ApLocaleMixin = {
     //--------------------
 
     contextTypes: {
-        [LOCALE_LOCALE_KEY]: types.object
+        [LOCALE_LOCALE_KEY]: types.func
     },
     childContextTypes: {
-        [LOCALE_LOCALE_KEY]: types.object
+        [LOCALE_LOCALE_KEY]: types.func
     },
     getChildContext(){
         let s = this;

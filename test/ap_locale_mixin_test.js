@@ -21,6 +21,10 @@ describe('ap-locale-mixin', () => {
 
     it('Render component.', (done) => {
 
+        const mockLocale = {
+            foo: 'This is foo',
+            bar: {'baz': 'This is baz'}
+        };
         const MockClass = React.createClass({
             mixins: [
                 ApLocaleMixin
@@ -36,16 +40,22 @@ describe('ap-locale-mixin', () => {
             componentWillMount(){
                 let s = this;
                 s.registerLocale(s.props.locale);
+
+                let locale = s.getLocale();
+                assert.equal(typeof(locale), 'function');
+                assert.equal(locale('bar.baz'), 'This is baz');
             }
         });
 
-        let grandChild = React.createElement(MockClass, {});
+        let grandChild = React.createElement(MockClass, {
+            locale: mockLocale
+        });
         let child = React.createElement(MockClass, {
-            locale: {foo: 'baz'}
+            locale: mockLocale
         }, grandChild);
         let parent = React.createElement(MockClass,
             {
-                locale: {foo: 'bar'}
+                locale: mockLocale
             },
             child
         );
