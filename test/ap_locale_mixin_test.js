@@ -44,6 +44,7 @@ describe('ap-locale-mixin', () => {
                 let locale = s.getLocale();
                 assert.equal(typeof(locale), 'function');
                 assert.equal(locale('bar.baz'), 'This is baz');
+                assert.equal(locale.bar.baz, 'This is baz');
             }
         });
 
