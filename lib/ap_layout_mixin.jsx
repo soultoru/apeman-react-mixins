@@ -27,6 +27,9 @@ let ApResizeMixin = {
         let s = this;
         clearTimeout(s._layoutTimer);
         s._layoutTimer = setTimeout(()=> {
+            if (!s.isMounted()) {
+                return;
+            }
             s.doLayout();
         }, immidate ? 0 : LAYOUT_INTERVAL);
     },
