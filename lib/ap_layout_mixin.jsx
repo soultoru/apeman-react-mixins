@@ -35,8 +35,10 @@ let ApLayoutMixin = {
             if (changed) {
                 s.layouts = layouts;
                 s.forceUpdate();
-                let event = new ApLayoutEvent({layouts});
-                props.onLayout(event);
+                if (props.onLayout) {
+                    let event = new ApLayoutEvent({layouts});
+                    props.onLayout(event);
+                }
             }
 
             // Fallback
