@@ -4,7 +4,7 @@
  */
 "use strict";
 
-const apLayoutMixin = require('../lib/ap_layout_mixin.js'),
+const ApLayoutMixin = require('../lib/ap_layout_mixin.js'),
     assert = require('assert');
 
 describe('ap-layout-mixin', () => {
