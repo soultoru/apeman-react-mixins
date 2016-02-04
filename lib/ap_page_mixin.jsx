@@ -15,38 +15,6 @@ let ApPageMixin = {
     //--------------------
     $apPageMixed: true,
 
-    /** Handle layout change of main */
-    handlePageMainLayout(layout) {
-        let s = this;
-        s.setState({
-            pageMainWidth: parseInt(layout.scrollWidth)
-        });
-    },
-
-    /** Handle layout change of header */
-    handlePageHeaderLayout(layout) {
-        let s = this;
-        s.setState({
-            pageHeaderHeight: parseInt(layout.height)
-        });
-    },
-
-    /** Style for page header */
-    pageHeaderStyle(state){
-        let s = this;
-        let pageMainWidth = state.pageMainWidth;
-        return {
-            maxWidth: pageMainWidth ? (pageMainWidth + 1) : null
-        }
-    },
-
-    /** Insets for insets of main. */
-    pageMainInsets(state){
-        let s = this;
-        return {
-            top: state.pageHeaderHeight
-        };
-    },
 
     /**
      * Register page view resolver.
@@ -143,16 +111,36 @@ let ApPageMixin = {
         }
     },
 
+    /**
+     * Get layout for page.
+     * @returns {object}
+     */
+    getPageLayouts(){
+        let s = this;
+        return s._pageLayouts || {};
+    },
+
+    /**
+     * Update page layout.
+     * @param {string} name - Name of layout.
+     * @param {object} layout - Layout data.
+     */
+    updatePageLayout(name, layout){
+        let s = this;
+        let _pageLayouts = s.getPageLayouts();
+        _pageLayouts[name] = Object.assign(
+            _pageLayouts[name] || {},
+            layout
+        );
+        s._pageLayouts = _pageLayouts;
+        s.layout();
+    },
+
     //--------------------
     // Specs
     //--------------------
     getInitialState() {
-        return {
-            /** Width of main content */
-            pageMainWidth: null,
-            /** Height of header */
-            pageHeaderHeight: null
-        };
+        return {};
     },
 
     //--------------------
@@ -176,6 +164,7 @@ let ApPageMixin = {
     // Private
     //------------------
 
+    _pageLayouts: null,
     _pageStacks: null,
     _pageViewResolver: null
 
