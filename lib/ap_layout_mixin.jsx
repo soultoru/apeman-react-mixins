@@ -7,6 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 import deepEqual from 'deep-equal';
+import {ApLayoutEvent} from './events';
 
 const LAYOUT_INTERVAL = 80;
 
@@ -29,12 +30,13 @@ let ApLayoutMixin = {
             if (!s.isMounted()) {
                 return;
             }
-            let layout = s.calcLayout && s.calcLayout(),
-                changed = !deepEqual(s.getLayout(), layout);
+            let layouts = s.calcLayouts && s.calcLayouts(),
+                changed = !deepEqual(s.layouts, layouts);
             if (changed) {
-                s._layout = layout;
+                s.layouts = layouts;
                 s.forceUpdate();
-                props.onLayout(s.getLayout());
+                let event = new LayoutEvent({layouts});
+                props.onLayout(event);
             }
 
             // Fallback
@@ -43,15 +45,6 @@ let ApLayoutMixin = {
             }
 
         }, immidate ? 0 : LAYOUT_INTERVAL);
-    },
-
-    /**
-     * Get calculated layout values.
-     * @returns {object}
-     */
-    getLayout(){
-        let s = this;
-        return s._layout;
     },
 
     //--------------------
@@ -66,16 +59,21 @@ let ApLayoutMixin = {
     // Lifecycle
     //--------------------
 
+    componentWillMount(){
+        let s = this;
+        if (s.getInitialLayouts) {
+            s.layouts = s.getInitialLayouts();
+        }
+    },
     componentDidMount() {
         let s = this;
         let noop = () => undefined;
-        s.getLayout = s.getLayout || noop;
         if (s.doLayout) {
-            console.warn('[ApLayoutMixin] .doLayout() is deprecated. use .calcLayout() instead.');
+            console.warn('[ApLayoutMixin] .doLayout() is deprecated. use .calcLayouts() instead.');
             return;
         }
-        if (!s.calcLayout) {
-            console.warn('[ApLayoutMixin] Should implement .calcLayout()');
+        if (!s.calcLayouts) {
+            console.warn('[ApLayoutMixin] Should implement .calcLayouts()');
         }
         window.addEventListener('resize', s.layout);
         s.layout(true);
@@ -85,7 +83,6 @@ let ApLayoutMixin = {
         let s = this;
         s.layout();
     },
-
 
     componentWillUnmount() {
         let s = this;
@@ -98,7 +95,7 @@ let ApLayoutMixin = {
     // Private
     //--------------------
 
-    _layout: null,
+    layouts: null,
     _layoutTimer: null
 
 };
