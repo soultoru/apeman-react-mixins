@@ -43,14 +43,6 @@ let ApPageMixin = {
         s._pageStacks[name] = stacker;
     },
 
-    registerPageViewStackers(stackers){
-        let s = this;
-        for (let name of Object.keys(stackers)) {
-            s.registerPageViewStacker(name, stackers[name]);
-        }
-
-    },
-
     /**
      * De register page stack
      * @param name
@@ -61,6 +53,16 @@ let ApPageMixin = {
         stacker.removeListener('push', s.pageStackViewDidPush);
         stacker.removeListener('pop', s.pageStackViewDidPop);
         delete s._pageStacks[name];
+    },
+    /**
+     * Deregister all page stacks.
+     */
+    deregisterAllPageStacks(){
+        let s = this,
+            names = Object.keys(s._pageStacks || {});
+        for (let name of names) {
+            s.deregisterPageStack(name);
+        }
     },
 
     /**
