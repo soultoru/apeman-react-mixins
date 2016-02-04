@@ -127,10 +127,9 @@ let ApPageMixin = {
      */
     updatePageLayout(name, layout){
         let s = this;
-        let _pageLayouts = s.getPageLayouts();
+        let _pageLayouts = Object.assign({}, s.getPageLayouts());
         _pageLayouts[name] = Object.assign(
-            _pageLayouts[name] || {},
-            layout
+            {}, _pageLayouts[name] || {}, layout
         );
         s._pageLayouts = _pageLayouts;
         s.layout();
