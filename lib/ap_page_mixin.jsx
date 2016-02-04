@@ -6,6 +6,7 @@
 "use strict";
 
 import React from 'react';
+import assert from 'assert';
 
 /** @lends ApPageMixin */
 let ApPageMixin = {
@@ -54,16 +55,6 @@ let ApPageMixin = {
         stacker.removeListener('pop', s.pageStackViewDidPop);
         delete s._pageStacks[name];
     },
-    /**
-     * Deregister all page stacks.
-     */
-    deregisterAllPageStacks(){
-        let s = this,
-            names = Object.keys(s._pageStacks || {});
-        for (let name of names) {
-            s.deregisterPageStack(name);
-        }
-    },
 
     /**
      * Get page main stack.
@@ -99,12 +90,12 @@ let ApPageMixin = {
         if (!url) {
             return;
         }
-        let urlComponents = url.replace(/^\//, '').split(/\//g);
-        if (urlComponents[0] === s.pageName) {
-            urlComponents.shift();
+        let names = url.replace(/^\//, '').split(/\//g);
+        if (names[0] === s.pageName) {
+            names.shift();
         }
-        let stackName = urlComponents.shift(),
-            stackerURL = urlComponents.join('/');
+        let stackName = names.shift(),
+            stackerURL = names.join('/');
         try {
             let stacker = s.getPageStack(stackName);
             stacker.fromURL(stackerURL);
@@ -149,13 +140,16 @@ let ApPageMixin = {
     //--------------------
     componentWillMount() {
         let s = this;
+
         s.pageName = s.pageName || (s.getPageName && s.getPageName());
-        if (!s.pageName) {
-            throw new Error('pageName is required.');
-        }
+        assert.ok(s.$apLocaleMixed, "ApLocaleMixin is required.");
+        assert.ok(s.pageName, 'pageName is required.');
+
     },
     componentWillUnmount() {
         let s = this;
+
+        // Cleanup stacks.
         for (let name of Object.keys(s._pageStacks || {})) {
             s.deregisterPageStack(name);
         }
