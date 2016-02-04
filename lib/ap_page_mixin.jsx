@@ -132,7 +132,7 @@ let ApPageMixin = {
             {}, _pageLayouts[name] || {}, layout
         );
         s._pageLayouts = _pageLayouts;
-        s.layout();
+        s.layout(true);
     },
 
     //--------------------
