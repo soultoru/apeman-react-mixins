@@ -91,14 +91,17 @@ let ApPageMixin = {
             return;
         }
         let names = url.replace(/^\//, '').split(/\//g);
-        if (names.length === 0) {
-            return;
-        }
         if (names[0] === s.pageName) {
             names.shift();
         }
+        if (names.length === 0) {
+            return;
+        }
         let stackName = names.shift(),
             stackerURL = names.join('/');
+        if (!stackName) {
+            return;
+        }
         try {
             let stacker = s.getPageStack(stackName);
             stacker.fromURL(stackerURL);
