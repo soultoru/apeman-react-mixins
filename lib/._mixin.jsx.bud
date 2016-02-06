@@ -8,6 +8,7 @@ const stringcase = require('stringcase');
 module.exports = [
     'Env',
     'Form',
+    'History',
     'Layout',
     'Locale',
     'Page',
