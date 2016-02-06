@@ -36,7 +36,7 @@ let ApPageMixin = {
         s._pageStacks = s._pageStacks || {};
         let resolver = s._pageViewResolver;
         if (!resolver) {
-            throw new Error('Resolver not found call `.registerPageViews()` before this.');
+            throw new Error('Resolver not found call `.registerPageViewResolver()` before this.');
         }
         stacker.stackName = name;
         stacker.addListener('push', s.pageStackViewDidPush);
@@ -91,6 +91,9 @@ let ApPageMixin = {
             return;
         }
         let names = url.replace(/^\//, '').split(/\//g);
+        if (names.length === 0) {
+            return;
+        }
         if (names[0] === s.pageName) {
             names.shift();
         }
