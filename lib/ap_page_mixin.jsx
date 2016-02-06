@@ -80,6 +80,18 @@ let ApPageMixin = {
         return `/${s.pageName}/${stacker.stackName}/${stacker.toURL()}`;
     },
 
+    /**
+     * Reset page stacks.
+     */
+    resetPageStacks(){
+        let s = this;
+        let stacks = s._pageStacks || {};
+        for (let name of Object.keys(stacks)) {
+            let stack = stacks[name];
+            stack.reset();
+        }
+    },
+
 
     /**
      * Restore page url
@@ -95,6 +107,7 @@ let ApPageMixin = {
             names.shift();
         }
         if (names.length === 0) {
+            s.resetPageStacks();
             return;
         }
         let stackName = names.shift(),
