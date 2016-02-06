@@ -99,6 +99,7 @@ let ApPageMixin = {
         try {
             let stacker = s.getPageStack(stackName);
             stacker.fromURL(stackerURL);
+            stacker.reload();
         } catch (e) {
             console.warn(`[${s.pageName}] Failed to restore url: ${url}`);
         }
