@@ -33,12 +33,14 @@ let ApLayoutMixin = {
             let layouts = s.calcLayouts && s.calcLayouts(),
                 changed = !deepEqual(s.layouts, layouts);
             if (changed) {
+                s.componentWillLayout(layouts);
                 s.layouts = layouts;
                 s.forceUpdate();
                 if (props.onLayout) {
                     let event = new ApLayoutEvent({layouts});
                     props.onLayout(event);
                 }
+                s.componentDidLayout(layouts);
             }
 
             // Fallback
@@ -66,10 +68,12 @@ let ApLayoutMixin = {
         if (s.getInitialLayouts) {
             s.layouts = s.getInitialLayouts();
         }
+        let noop = () => undefined;
+        s.componentWillLayout = s.componentWillLayout || noop;
+        s.componentDidLayout = s.componentDidLayout || noop;
     },
     componentDidMount() {
         let s = this;
-        let noop = () => undefined;
         if (s.doLayout) {
             console.warn('[ApLayoutMixin] .doLayout() is deprecated. use .calcLayouts() instead.');
             return;
