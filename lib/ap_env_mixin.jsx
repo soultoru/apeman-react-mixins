@@ -20,9 +20,17 @@ let ApEnvMixin = {
      * @returns {boolean}
      */
     isProductionEnv(){
-        let s = this,
-            {props} = s;
-        return props.NODE_ENV === 'production';
+        let s = this;
+        return s.getEnv() === 'production';
+    },
+
+    /**
+     * Get env values.
+     * @returns {string} - Env value.
+     */
+    getEnv(){
+        let s = this;
+        return s.props.NODE_ENV;
     },
 
     //--------------------

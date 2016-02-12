@@ -32,6 +32,7 @@ describe('ap-env-mixin', () => {
             },
             componentWillMount(){
                 let s = this;
+                assert.equal(s.getEnv(), 'production');
                 assert.ok(s.isProductionEnv());
             }
         });
