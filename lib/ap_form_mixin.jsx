@@ -22,9 +22,9 @@ let ApFormMixin = {
     handleFormChange(e){
         let s = this;
 
-        let {name, value} = e.target;
+        let {name, result, value} = e.target;
         s.setFormValues({
-            [name]: value
+            [name]: result || value
         });
     },
 
