@@ -129,8 +129,9 @@ let ApTouchMixin = {
     componentDidMount() {
         let s = this;
         let touchable = supportsTouch(s.props);
+        let getData = () => s.getTouchData();
         if (touchable) {
-            s[TOUCH_HAMMER_KEY] = createTouchHammer(ReactDOM.findDOMNode(s), s.props, s.getTouchData.bind(s));
+            s[TOUCH_HAMMER_KEY] = createTouchHammer(ReactDOM.findDOMNode(s), s.props, getData);
         }
     },
 
