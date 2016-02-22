@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 
 const TOUCH_HAMMER_KEY = "_apTouchHammer";
 
-function createTouchHammer(node, props) {
+function createTouchHammer(node, props, getData) {
     if (!node) {
         return;
     }
@@ -24,7 +24,11 @@ function createTouchHammer(node, props) {
         .forEach(key => {
             if (/^on/.test(key)) {
                 let event = key.replace(/^on/, '').toLowerCase();
-                hammer.on(event, props[key]);
+                let handler = props[key];
+                hammer.on(event, (e) => {
+                    e.data = getData(); // Set touching data.
+                    handler(e);
+                });
             }
             if (/Direction$/.test(key)) {
                 let gesture = key.replace(/Direction$/, '');
@@ -117,11 +121,16 @@ let ApTouchMixin = {
     // Lifecycle
     //--------------------
 
+    componentWillMount(){
+        let s = this;
+        s.getTouchData = s.getTouchData || (()=> undefined);
+    },
+
     componentDidMount() {
         let s = this;
         let touchable = supportsTouch(s.props);
         if (touchable) {
-            s[TOUCH_HAMMER_KEY] = createTouchHammer(ReactDOM.findDOMNode(s), s.props);
+            s[TOUCH_HAMMER_KEY] = createTouchHammer(ReactDOM.findDOMNode(s), s.props, s.getTouchData.bind(s));
         }
     },
 
