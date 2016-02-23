@@ -82,12 +82,12 @@ let ApSpinMixin = {
 
     /**
      * Add spin count while active.
-     * @param {string} name - Name of spin.
+     * @param {string|number} name - Name of spin.
      * @param {function} action - Action to do.
      */
     spinWhile(name, action){
         let args = argx(arguments);
-        name = args.shift('string');
+        name = args.shift('string|number');
         action = args.pop('function');
         let s = this;
         s.incrementSpinCount(name);
