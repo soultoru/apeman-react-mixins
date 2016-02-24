@@ -17,15 +17,20 @@ let ApFormMixin = {
 
     /**
      * Handle change of form input
-     * @param {Event} e - Input change event.
+     * @param {object} e - Input change event.
      */
     handleFormChange(e){
-        let s = this;
+        let s = this,
+            {props} = s;
 
         let {name, value} = e.target;
         s.setFormValues({
             [name]: value
         });
+        if (props.onFormValueChange) {
+            e.form = s.getFormValues();
+            props.onFormValueChange(e);
+        }
     },
 
     /**
@@ -52,12 +57,22 @@ let ApFormMixin = {
     // Specs
     //--------------------
 
+    propTypes: {
+        onFormValueChange: type.func
+    },
+
     getInitialState() {
         let s = this;
         return {
             formValues: null
         }
-    }
+    },
+
+    getDefaultProps() {
+        return {
+            onFormValueChange: null
+        }
+    },
 
     //--------------------
     // Lifecycle
