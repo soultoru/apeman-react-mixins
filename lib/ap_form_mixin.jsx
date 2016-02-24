@@ -58,7 +58,7 @@ let ApFormMixin = {
     //--------------------
 
     propTypes: {
-        onFormValueChange: type.func
+        onFormValueChange: types.func
     },
 
     getInitialState() {
