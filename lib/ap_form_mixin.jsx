@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import ReactDOM from 'react-dom';
 
 /** @lends ApFormMixin */
 let ApFormMixin = {
@@ -31,6 +32,8 @@ let ApFormMixin = {
         );
 
         if (props.onFormChange) {
+            e = e || {};
+            e.target = e.target || ReactDOM.findDOMNode(s);
             e.form = values;
             props.onFormChange(e);
         }
@@ -46,10 +49,30 @@ let ApFormMixin = {
 
         let values = props.formValues;
         if (props.onFormSubmit) {
+            e = e || {};
+            e.target = e.target || ReactDOM.findDOMNode(s);
             e.form = values;
             props.onFormSubmit(e);
         }
     },
+
+    /**
+     * Handle form cancel.
+     * @param {object} e - Submit event.
+     */
+    handleFormCancel(e){
+        let s = this,
+            {props} = s;
+
+        let values = props.formValues;
+        if (props.onFormCancel) {
+            e = e || {};
+            e.target = e.target || ReactDOM.findDOMNode(s);
+            e.form = values;
+            props.onFormCancel(e);
+        }
+    },
+
 
     /**
      * Get a form value.
@@ -71,14 +94,16 @@ let ApFormMixin = {
     propTypes: {
         formValues: types.object,
         onFormChange: types.func,
-        onFormSubmit: types.func
+        onFormSubmit: types.func,
+        onFormCancel: types.func
     },
 
     getDefaultProps() {
         return {
             formValues: null,
             onFormChange: null,
-            onFormSubmit: null
+            onFormSubmit: null,
+            onFormCancel: null
         }
     }
 
