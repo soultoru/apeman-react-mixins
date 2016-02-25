@@ -24,33 +24,31 @@ let ApFormMixin = {
             {props} = s;
 
         let {name, value} = e.target;
-        s.setFormValues({
-            [name]: value
-        });
-        if (props.onFormValueChange) {
-            e.form = s.getFormValues();
-            props.onFormValueChange(e);
+        let values = Object.assign(
+            {}, props.formValues, {
+                [name]: value
+            }
+        );
+
+        if (props.onFormChange) {
+            e.form = values;
+            props.onFormChange(e);
         }
     },
 
     /**
-     * Get form values.
-     * @returns {object} - Values of form.
+     * Handle form submit.
+     * @param {object} e - Submit event.
      */
-    getFormValues(){
+    handleFormSubmit(e){
         let s = this,
-            {state} = s;
-        return state.formValues || {};
-    },
+            {props} = s;
 
-    /**
-     * Set form values.
-     * @param {object} values - Values to set.
-     */
-    setFormValues(values){
-        let s = this;
-        let formValues = Object.assign(s.getFormValues(), values);
-        s.setState({formValues});
+        let values = props.formValues;
+        if (props.onFormSubmit) {
+            e.form = values;
+            props.onFormSubmit(e);
+        }
     },
 
     //--------------------
@@ -58,21 +56,18 @@ let ApFormMixin = {
     //--------------------
 
     propTypes: {
-        onFormValueChange: types.func
-    },
-
-    getInitialState() {
-        let s = this;
-        return {
-            formValues: null
-        }
+        formValues: types.object,
+        onFormChange: types.func,
+        onFormSubmit: types.func
     },
 
     getDefaultProps() {
         return {
-            onFormValueChange: null
+            formValues: null,
+            onFormChange: null,
+            onFormSubmit: null
         }
-    },
+    }
 
     //--------------------
     // Lifecycle

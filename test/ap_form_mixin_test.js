@@ -34,11 +34,13 @@ describe('ap-form-mixin', () => {
             },
             componentWillMount(){
                 let s = this;
-                let values = s.getFormValues();
-                console.log(values);
+                assert.ok(s.handleFormChange);
+                assert.ok(s.handleFormSubmit);
             }
         });
-        let root = React.createElement(MockClass, {});
+        let root = React.createElement(MockClass, {
+            formValues: 'foo'
+        });
         let html = ReactDOM.renderToString(root);
         assert.ok(html);
         done();
