@@ -51,6 +51,19 @@ let ApFormMixin = {
         }
     },
 
+    /**
+     * Get a form value.
+     * @param {string} name - Name of the value.
+     * @returns {*} - Value
+     */
+    getFormValue(name){
+        let s = this,
+            {props} = s;
+
+        let values = props.formValues;
+        return values && values[name] || null;
+    },
+
     //--------------------
     // Specs
     //--------------------
