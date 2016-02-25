@@ -106,6 +106,9 @@ let ApFormMixin = {
         let s = this;
         options = options || {};
         let key = options.key || 'default';
+        if (!handler) {
+            return null;
+        }
         handler.formWrap = handler.formWrap || {};
         handler.formWrap[key] = handler.formWrap[key] || function formWrap(e) {
                 e = Object.assign(e || {}, {
