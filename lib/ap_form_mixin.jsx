@@ -80,11 +80,16 @@ let ApFormMixin = {
      * @returns {*} - Value
      */
     getFormValue(name){
+        let s = this;
+        let values = s.getFormValues();
+        return values && values[name] || null;
+    },
+
+    getFormValues(){
         let s = this,
             {props} = s;
 
-        let values = props.formValues;
-        return values && values[name] || null;
+        return props.formValues || null;
     },
 
     //--------------------
