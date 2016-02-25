@@ -100,7 +100,7 @@ let ApFormMixin = {
      * Wrap as form handler.
      * @param {function} handler - A handler.
      * @param {object} options - Optional setttings
-     * @returns {formWrap}
+     * @returns {function}
      */
     asFormHandler(handler, options){
         let s = this;
@@ -109,14 +109,14 @@ let ApFormMixin = {
         if (!handler) {
             return null;
         }
-        handler.formWrap = handler.formWrap || {};
-        handler.formWrap[key] = handler.formWrap[key] || function formWrap(e) {
+        handler.apFormWraps = handler.apFormWraps || {};
+        handler.apFormWraps[key] = handler.apFormWraps[key] || function formWrap(e) {
                 e = Object.assign(e || {}, {
                     form: s.getFormValues()
                 }, options);
                 handler.call(s, e);
             };
-        return handler.formWrap[key];
+        return handler.apFormWraps[key];
 
     },
 
