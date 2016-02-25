@@ -85,11 +85,36 @@ let ApFormMixin = {
         return values && values[name] || null;
     },
 
+    /**
+     * Get form values.
+     * @returns {*|null|string}
+     */
     getFormValues(){
         let s = this,
             {props} = s;
 
         return props.formValues || null;
+    },
+
+    /**
+     * Wrap as form handler.
+     * @param {function} handler - A handler.
+     * @param {object} options - Optional setttings
+     * @returns {formWrap}
+     */
+    asFormHandler(handler, options){
+        let s = this;
+        options = options || {};
+        let key = options.key || 'default';
+        handler.formWrap = handler.formWrap || {};
+        handler.formWrap[key] = handler.formWrap[key] || function formWrap(e) {
+                e = Object.assign(e || {}, {
+                    form: s.getFormValues()
+                }, options);
+                handler.call(s, e);
+            };
+        return handler.formWrap[key];
+
     },
 
     //--------------------
