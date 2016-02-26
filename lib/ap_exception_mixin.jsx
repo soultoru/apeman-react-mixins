@@ -35,8 +35,8 @@ let ApExceptionMixin = {
 
     componentDidMount(){
         let s = this;
-        if (s.doHandleException) {
-            console.warn('[ApExceptionMixin] .doHandleException() is deprecated. use .calcLayouts() instead.');
+        if (!s.doHandleException) {
+            console.warn('[ApExceptionMixin] .doHandleException() is required.');
             return;
         }
         window.addEventListener('error', s.handleException);
