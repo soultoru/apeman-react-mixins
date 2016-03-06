@@ -9,6 +9,7 @@ module.exports = [
     'Env',
     'Exception',
     'Form',
+    'Flush',
     'History',
     'Layout',
     'Locale',
@@ -18,6 +19,7 @@ module.exports = [
     'Side',
     'Spin',
     'Stack',
+    'Timer',
     'Toast',
     'Touch',
     'View'
