@@ -4,7 +4,9 @@
  */
 "use strict";
 
-const apTimerMixin = require('../lib/ap_timer_mixin.js'),
+const ApTimerMixin = require('../lib/ap_timer_mixin.js'),
+    React = require('react'),
+    ReactDOM = require('react-dom/server'),
     assert = require('assert');
 
 describe('ap-timer-mixin', () => {
@@ -19,6 +21,19 @@ describe('ap-timer-mixin', () => {
 
 
     it('Ap timer mixin', (done) => {
+        const MockClass = React.createClass({
+            mixins: [
+                ApTimerMixin
+
+            ],
+            render(){
+                return React.createElement('div', {});
+            }
+        });
+
+        let elm = React.createElement(MockClass,{});
+        let html = ReactDOM.renderToString(elm);
+        assert.ok(html);
         done();
     });
 });

@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import assert from 'assert';
 
 /** @lends ApFlushMixin */
 let ApFlushMixin = {
