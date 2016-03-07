@@ -6,6 +6,7 @@
 const stringcase = require('stringcase');
 
 module.exports = [
+    'Cycle',
     'Env',
     'Exception',
     'Form',
