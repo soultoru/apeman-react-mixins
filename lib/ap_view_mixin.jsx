@@ -25,7 +25,7 @@ const ApViewMixin = {
             console.warn('The top view of current stack is not this view.');
             return;
         }
-        s.popViewFromCurrentStack();
+        return s.popViewFromCurrentStack();
     },
 
     /**
