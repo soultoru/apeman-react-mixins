@@ -34,7 +34,7 @@ const ApViewMixin = {
     popViewFromCurrentStack(){
         let s = this;
         let {props} = s;
-        props.viewPop();
+        return props.viewPop();
     },
 
     /**
@@ -46,7 +46,7 @@ const ApViewMixin = {
     pushViewToCurrentStack(view, params, way){
         let s = this;
         let {props} = s;
-        props.viewPush(view, params, way);
+        return props.viewPush(view, params, way);
     },
 
     //--------------------
