@@ -44,11 +44,6 @@ let ApLayoutMixin = {
                 s.componentDidLayout(layouts);
             }
 
-            // Fallback
-            if (s.doLayout) {
-                s.doLayout();
-            }
-
         }, immidate ? 0 : LAYOUT_INTERVAL);
     },
 
@@ -78,10 +73,6 @@ let ApLayoutMixin = {
     },
     componentDidMount() {
         let s = this;
-        if (s.doLayout) {
-            console.warn('[ApLayoutMixin] .doLayout() is deprecated. use .calcLayouts() instead.');
-            return;
-        }
         if (!s.calcLayouts) {
             console.warn('[ApLayoutMixin] Should implement .calcLayouts()');
         }

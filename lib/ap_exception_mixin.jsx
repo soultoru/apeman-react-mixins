@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import Promise from 'apemanpromise';
 import defaults from 'defaults';
 
 /** @lends ApExceptionMixin */
@@ -18,9 +19,11 @@ let ApExceptionMixin = {
 
     handleException(err){
         let s = this;
-        s.willHandleException(err);
-        s.doHandleException(err);
-        s.didHandleException(err);
+
+        return Promise.resolve(err)
+            .then(err => s.willHandleException(err))
+            .then(err => s.doHandleException(err))
+            .then(err => s.didHandleException(err));
     },
 
     //--------------------
