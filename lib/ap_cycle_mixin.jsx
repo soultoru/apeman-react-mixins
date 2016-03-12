@@ -25,13 +25,17 @@ let ApCycleMixin = {
     cycle(params, handlers){
         let s = this;
         defaults(handlers, {
-            will: noop, do: noop, did: noop
+            will: noop,
+            do: noop,
+            did: noop,
+            catch: Promise.reject
         });
         return Promise
             .resolve(params)
             .then(params => handlers.will(params))
             .then(params => handlers.do(params))
-            .then(result => handlers.did(result));
+            .then(result => handlers.did(result))
+            .catch(err => handlers.catch(err));
     }
 
 
