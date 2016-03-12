@@ -8,6 +8,7 @@
 import React, {PropTypes as types} from 'react';
 import defaults from 'defaults';
 let noop = (values => values);
+let reject = (err => Promise.reject(err));
 
 /** @lends ApCycleMixin */
 let ApCycleMixin = {
@@ -28,7 +29,7 @@ let ApCycleMixin = {
             will: noop,
             do: noop,
             did: noop,
-            catch: Promise.reject
+            catch: reject
         });
         return Promise
             .resolve(params)
