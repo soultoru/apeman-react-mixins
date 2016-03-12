@@ -7,6 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 import apHistory from 'apeman-brws-history';
+import defaults from 'defaults';
 
 /** @lends ApHistoryMixin */
 let ApHistoryMixin = {
@@ -27,7 +28,9 @@ let ApHistoryMixin = {
     componentWillMount() {
         let s = this;
         let noop = () => undefined;
-        s.historyDidPop = s.historyDidPop || noop;
+        defaults(s, {
+            historyDidPop: noop
+        });
     },
 
     componentDidMount(){

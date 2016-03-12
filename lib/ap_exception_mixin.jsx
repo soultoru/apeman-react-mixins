@@ -6,6 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import defaults from 'defaults';
 
 /** @lends ApExceptionMixin */
 let ApExceptionMixin = {
@@ -29,8 +30,11 @@ let ApExceptionMixin = {
     componentWillMount(){
         let s = this;
         let noop = (value => value);
-        s.willHandleException = s.willHandleException || noop;
-        s.didHandleException = s.didHandleException || noop;
+
+        defaults(s, {
+            willHandleException: noop,
+            didHandleException: noop
+        });
     },
 
     componentDidMount(){

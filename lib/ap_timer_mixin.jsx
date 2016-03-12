@@ -6,6 +6,8 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
+import Promise from  'apemanpromise';
+import argx from 'argx';
 
 /** @lends ApTimerMixin */
 let ApTimerMixin = {
@@ -16,48 +18,63 @@ let ApTimerMixin = {
     $apTimerMixed: true,
 
     /**
-     * Set a timer with name
+     * Set a timer with name.
      * @param {string} name - Name of the timer.
-     * @param {function} handler - Handler function.
      * @param {number} duration - Timeout duration.
+     * @returns {Promise}
      */
-    setTimer(name, handler, duration){
+    setTimer(name, duration){
         let s = this;
-        s._timers[name] = setTimeout(handler, duration);
+        return new Promise(resolve => {
+            let id = setTimeout(() => {
+                resolve(id);
+            }, duration);
+            s._timers[name] = id;
+        });
     },
 
     /**
      * Clear and set timer.
      * @param {string} name - Name of the timer.
-     * @param {function} handler - Handler function.
      * @param {number} duration - Timeout duration.
+     * @returns {Promise}
      */
-    resetTimer(name, handler, duration){
+    resetTimer(name, duration){
         let s = this;
-        s.clearTimer(name);
-        s.setTimer(name, handler, duration);
+
+        return s.clearTimer(name)
+            .then(
+                s.setTimer(name, duration)
+            );
     },
 
     /**
      * Clear a timer with name.
      * @param {string} name - Name of timer.
+     * @returns {Promise}
      */
     clearTimer(name){
         let s = this;
+        let id;
         if (s._timers.hasOwnProperty(name)) {
-            clearTimeout(s._timers[name]);
+            id = s._timers[name];
+            clearTimeout(id);
             delete s._timers[name];
         }
+        return Promise.resolve(id);
     },
 
     /**
      * Clear all timers.
+     * @returns {Promise}
      */
     clearAllTimers(){
         let s = this;
-        for (let name of Object.keys(s._timers)) {
-            s.clearTimer(name);
-        }
+        return Promise.all(
+            Object.keys(s._timers || {}).map(name =>
+                s.clearTimer(name)
+            )
+        );
     },
 
     //--------------------
@@ -69,13 +86,14 @@ let ApTimerMixin = {
         s._timers = {};
     },
 
-
     componentWillUnmount() {
         let s = this;
 
         s.clearAllTimers();
         delete s._timers;
-    }
+    },
+
+    _timers: undefined
 
 
 };

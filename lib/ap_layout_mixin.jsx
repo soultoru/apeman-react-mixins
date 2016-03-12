@@ -7,6 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 import deepEqual from 'deep-equal';
+import defaults from 'defaults';
 import {ApLayoutEvent} from './events';
 
 const LAYOUT_INTERVAL = 80;
@@ -69,8 +70,11 @@ let ApLayoutMixin = {
             s.layouts = s.getInitialLayouts();
         }
         let noop = () => undefined;
-        s.componentWillLayout = s.componentWillLayout || noop;
-        s.componentDidLayout = s.componentDidLayout || noop;
+
+        defaults(s, {
+            componentWillLayout: noop,
+            componentDidLayout: noop
+        });
     },
     componentDidMount() {
         let s = this;
@@ -94,7 +98,7 @@ let ApLayoutMixin = {
         let s = this;
         clearTimeout(s._layoutTimer);
         window.removeEventListener('resize', s.layout);
-        delete  s._layoutTimer;
+        delete s._layoutTimer;
     },
 
     //--------------------

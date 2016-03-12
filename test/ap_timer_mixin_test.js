@@ -24,17 +24,22 @@ describe('ap-timer-mixin', () => {
         const MockClass = React.createClass({
             mixins: [
                 ApTimerMixin
-
             ],
             render(){
                 return React.createElement('div', {});
+            },
+            componentWillMount(){
+                let s = this;
+                s.setTimer('hoge', 200).then(() => {
+                    done();
+                });
             }
         });
 
-        let elm = React.createElement(MockClass,{});
+        let elm = React.createElement(MockClass, {});
         let html = ReactDOM.renderToString(elm);
         assert.ok(html);
-        done();
+
     });
 });
 
