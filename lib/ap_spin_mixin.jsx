@@ -40,7 +40,9 @@ let ApSpinMixin = {
         name = name || 'default';
         let counts = s.state[SPIN_PROP_KEY] || {};
         counts[name] = count;
-        s.setState({[SPIN_PROP_KEY]: counts});
+        if (s.isMounted()) {
+            s.setState({[SPIN_PROP_KEY]: counts});
+        }
     },
 
     /**
