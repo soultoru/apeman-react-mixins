@@ -7,6 +7,9 @@
 
 import React, {PropTypes as types} from 'react';
 
+
+const ENV_ENV_KEY = "_apEnv";
+
 /** @lends ApEnvMixin */
 let ApEnvMixin = {
 
@@ -30,7 +33,7 @@ let ApEnvMixin = {
      */
     getEnv(){
         let s = this;
-        return s.props.NODE_ENV;
+        return s.props.NODE_ENV || s.context[ENV_ENV_KEY] || process.env.NODE_ENV;
     },
 
     //--------------------
@@ -38,12 +41,21 @@ let ApEnvMixin = {
     //--------------------
 
     propTypes: {
-        NODE_ENV: types.string.isRequired
+        NODE_ENV: types.string
     },
 
-    getDefaultProps() {
+    contextTypes: {
+        [ENV_ENV_KEY]: types.string
+    },
+
+    childContextTypes: {
+        [ENV_ENV_KEY]: types.string
+    },
+
+    getChildContext(){
+        let s = this;
         return {
-            NODE_ENV: process.env.NODE_ENV
+            [ENV_ENV_KEY]: s.getEnv()
         }
     }
 

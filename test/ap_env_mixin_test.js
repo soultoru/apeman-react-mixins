@@ -28,7 +28,8 @@ describe('ap-env-mixin', () => {
             ],
             render(){
                 let s = this;
-                return React.createElement('div', {}, s.uuid);
+                return React.createElement('div', {
+                }, s.props.children);
             },
             componentWillMount(){
                 let s = this;
@@ -37,11 +38,18 @@ describe('ap-env-mixin', () => {
             }
         });
 
-        let element = React.createElement(MockClass, {
-            NODE_ENV: 'production'
-        });
-        let html = ReactDOM.renderToString(element);
+        let grandChild = React.createElement(MockClass, {});
+        let child = React.createElement(MockClass, {}, grandChild);
+        let parent = React.createElement(MockClass,
+            {
+                NODE_ENV: 'production'
+            },
+            child
+        );
+
+        let html = ReactDOM.renderToString(parent);
         assert.ok(html);
+        console.log(html);
         done();
     });
 });

@@ -54,6 +54,7 @@ describe('ap-locale-mixin', () => {
         let child = React.createElement(MockClass, {
             locale: mockLocale
         }, grandChild);
+
         let parent = React.createElement(MockClass,
             {
                 locale: mockLocale
