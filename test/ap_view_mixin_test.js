@@ -39,10 +39,10 @@ describe('ap-view-mixin', () => {
             viewId: 124,
             viewWay: 'PUSH_LEFT',
             viewPop(){
-
+                return Promise.resolve('hoge');
             },
             viewPush(){
-
+                return Promise.resolve('hoge');
             },
             viewTop(){
 

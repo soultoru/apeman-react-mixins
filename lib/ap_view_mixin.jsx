@@ -33,8 +33,7 @@ const ApViewMixin = {
      */
     popViewFromCurrentStack(){
         let s = this;
-        let {props} = s;
-        return props.viewPop();
+        return s._popView();
     },
 
     /**
@@ -45,30 +44,50 @@ const ApViewMixin = {
      */
     pushViewToCurrentStack(view, params, way){
         let s = this;
-        let {props} = s;
-        return props.viewPush(view, params, way);
+        return s._pushView(view, params, way);
     },
 
     //--------------------
     // Specs
     //--------------------
 
-    statics: {
+    propTypes: {
         viewId: types.string.isRequired,
         viewWay: types.string.isRequired,
         viewPush: types.func.isRequired,
         viewPop: types.func.isRequired,
-        viewTop: types.func.isRequired
+        viewTop: types.func.isRequired,
+        onViewPop: types.func,
+        onViewPush: types.func
     },
 
     getDefaultProps() {
+        let noop = (values => values);
         return {
             viewId: null,
             viewWay: null,
             viewPush: null,
             viewPop: null,
-            viewTop: null
+            viewTop: null,
+            onViewPop: noop,
+            onViewPush: noop
         }
+    },
+
+    //--------------------
+    // Private
+    //--------------------
+
+    _pushView(view, params, way){
+        let s = this,
+            {props} = s;
+        return props.viewPush(view, params, way).then(props.onViewPush);
+    },
+
+    _popView(){
+        let s = this,
+            {props} = s;
+        return props.viewPop().then(props.onViewPop);
     }
 
 };
