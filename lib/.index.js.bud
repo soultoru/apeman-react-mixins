@@ -25,6 +25,7 @@ module.exports = apeTmpl.indexJsBud({
         'ApSpinMixin',
         'ApSideMixin',
         'ApHistoryMixin',
+        'ApOutsideMixin',
         'ApStackMixin',
         'ApTimerMixin',
         'ApToastMixin',

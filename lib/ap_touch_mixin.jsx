@@ -121,7 +121,7 @@ let ApTouchMixin = {
     // Lifecycle
     //--------------------
 
-    componentWillMount(){
+    componentWillMount() {
         let s = this;
         s.getTouchData = s.getTouchData || (()=> undefined);
     },
