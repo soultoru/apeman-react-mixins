@@ -27,7 +27,7 @@ class BodyTapRecognizer {
         if (_hammer) {
             return _hammer;
         }
-        const Hammer = require('hammer');
+        const Hammer = require('hammerjs');
         s._hammer = new Hammer(s.getDOMNode());
         return s.getHammer();
     }
