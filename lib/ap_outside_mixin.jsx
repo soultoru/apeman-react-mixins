@@ -61,10 +61,14 @@ let ApOutsideMixin = {
 
     handleTapForOutside(e) {
         let s = this,
+            {props} = s,
             node = ReactDOM.findDOMNode(s);
         let contained = node.contains(e.target);
         if (!contained) {
             s.outsideDidTap(e);
+        }
+        if (props.onOutside) {
+            props.onOutside(e);
         }
     },
 
