@@ -18,6 +18,7 @@ module.exports = [
     'Page',
     'Pure',
     'Resize',
+    'Server',
     'Side',
     'Spin',
     'Stack',

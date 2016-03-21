@@ -1,6 +1,6 @@
 {
   "name": "apeman-react-mixins",
-  "version": "4.0.7",
+  "version": "4.1.0",
   "description": "React mixin set of apeman.",
   "main": "lib",
   "scripts": {
@@ -46,8 +46,8 @@
     "ape-updating": "^2.0.4",
     "ape-watching": "^2.1.0",
     "apeman-asset-stylesheets": "^1.0.5",
-    "apeman-react-basic": "^4.1.5",
-    "apeman-react-theme": "^3.1.2",
+    "apeman-react-basic": "^4.1.9",
+    "apeman-react-theme": "^3.1.4",
     "apeman-react-toast": "^1.1.9",
     "coz": "^4.0.4",
     "expandglob": "^2.0.0",
