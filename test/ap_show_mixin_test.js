@@ -1,15 +1,15 @@
 /**
- * Test case for apServerMixin.
+ * Test case for apShowMixin.
  * Runs with mocha.
  */
 "use strict";
 
-const ApServerMixin = require('../lib/ap_server_mixin.js'),
+const ApShowMixin = require('../lib/ap_show_mixin.js'),
     React = require('react'),
     ReactDOM = require('react-dom/server'),
     assert = require('assert');
 
-describe('ap-server-mixin', () => {
+describe('ap-show-mixin', () => {
 
     before((done) => {
         done();
@@ -20,21 +20,12 @@ describe('ap-server-mixin', () => {
     });
 
 
-    it('Ap server mixin', (done) => {
+    it('Ap show mixin', (done) => {
         const MockClass = React.createClass({
             mixins: [
-                ApServerMixin
+                ApShowMixin
             ],
             render() {
-                return null;
-            },
-            getServerEventSource(){
-                return {};
-            },
-            getServerPollingConfig() {
-                return {};
-            },
-            knockServer() {
                 return null;
             }
         });

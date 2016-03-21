@@ -20,6 +20,7 @@ module.exports = [
     'Resize',
     'Server',
     'Side',
+    'Show',
     'Spin',
     'Stack',
     'Timer',
