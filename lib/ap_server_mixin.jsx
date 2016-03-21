@@ -43,16 +43,19 @@ let ApServerMixin = {
         let s = this;
 
         let es = s.getServerEventSource();
-        es.addEventListener('server:restart', s.handleServerRestart);
-        s._serverES = es;
+        if (es) {
+            es.addEventListener('server:restart', s.handleServerRestart);
+            s._serverES = es;
+        }
     },
 
     componentWillUnmount() {
         let s = this,
             es = s._serverES;
-        es.removeEventListener('server:restart', s.handleServerRestart);
-
-        es.close();
+        if (es) {
+            es.removeEventListener('server:restart', s.handleServerRestart);
+            es.close();
+        }
     },
 
     //--------------------
