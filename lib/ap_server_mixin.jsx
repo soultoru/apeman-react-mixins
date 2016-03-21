@@ -88,4 +88,4 @@ let ApServerMixin = {
 
 };
 
-export default Object.freeze(ApServerMixin);
+module.exports = Object.freeze(ApServerMixin);
