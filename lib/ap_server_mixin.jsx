@@ -67,7 +67,7 @@ let ApServerMixin = {
         s.serverWillRestart();
         let pollingConfig = s.getServerPollingConfig();
         untilResolved(
-            Promise.resolve(() => s.knockServer()),
+            () => Promise.resolve(s.knockServer()),
             pollingConfig
         )
             .then(res => {
