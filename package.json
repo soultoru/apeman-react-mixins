@@ -1,6 +1,6 @@
 {
   "name": "apeman-react-mixins",
-  "version": "4.1.6",
+  "version": "4.2.1",
   "description": "React mixin set of apeman.",
   "main": "lib",
   "scripts": {
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/apeman-react-labo/apeman-react-mixins#readme",
   "dependencies": {
     "apeman-brws-history": "^1.1.1",
+    "apemanlocale": "^2.5.20",
     "apemanpromise": "^3.1.0",
     "argx": "^2.0.2",
     "deep-equal": "^1.0.1",

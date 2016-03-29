@@ -23,7 +23,8 @@ describe('ap-locale-mixin', () => {
 
         const mockLocale = {
             foo: 'This is foo',
-            bar: {'baz': 'This is baz'}
+            bar: {'baz': 'This is baz'},
+            quz: 'Quq with name: __name__'
         };
         const MockClass = React.createClass({
             mixins: [
@@ -45,6 +46,7 @@ describe('ap-locale-mixin', () => {
                 assert.equal(typeof(locale), 'function');
                 assert.equal(locale('bar.baz'), 'This is baz');
                 assert.equal(locale.bar.baz, 'This is baz');
+                assert.equal(locale('quz', {vars: {name: 'hoge'}}), 'Quq with name: hoge');
             }
         });
 

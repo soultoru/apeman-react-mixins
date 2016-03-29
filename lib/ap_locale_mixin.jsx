@@ -6,7 +6,7 @@
 "use strict";
 
 import React, {PropTypes as types} from 'react';
-import objnest from 'objnest';
+import apemanlocale from 'apemanlocale';
 
 const LOCALE_LOCALE_KEY = "_apLocale";
 
@@ -26,7 +26,7 @@ let ApLocaleMixin = {
         let s = this;
         let locale = s[LOCALE_LOCALE_KEY] || s.context[LOCALE_LOCALE_KEY];
         if (!locale) {
-            let msg = "Locale no initialized. You need to call `.registerLocale()` on this component or one of it's parents";
+            let msg = "Locale not initialized. You need to call `.registerLocale()` on this component or one of it's parents";
             throw new Error(msg);
         }
         return locale;
@@ -39,12 +39,10 @@ let ApLocaleMixin = {
     registerLocale(locale){
         let s = this;
 
-        let dataSource = objnest.flatten(locale);
-
-        function resolveLocale(key) {
-            let resolved = dataSource[key];
+        function resolveLocale(keypath, options) {
+            let resolved = apemanlocale.resolve(locale, keypath, options);
             if (!resolved) {
-                console.warn(`[locale] Unknown key: ${key}`);
+                console.warn(`[locale] Unknown key: ${keypath}`);
             }
             return resolved;
         }
