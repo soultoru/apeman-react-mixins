@@ -13,12 +13,12 @@ let Component = React.createClass({
     render () {
         let s = this;
         return (
-            <div>{s.isProductionEnv() ? null : 'Hi, there'}</div>
+            <div>{ s.isProductionEnv() ? null : 'Hi, there' }</div>
         )
     }
 });
 let element = (<div>
-    <Component NODE_ENV={process.env.NODE_ENV}>
+    <Component NODE_ENV={ process.env.NODE_ENV }>
     </Component>
 </div>);
 

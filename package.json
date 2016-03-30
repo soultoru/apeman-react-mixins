@@ -1,6 +1,6 @@
 {
   "name": "apeman-react-mixins",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "React mixin set of apeman.",
   "main": "lib",
   "scripts": {
@@ -24,14 +24,14 @@
   "homepage": "https://github.com/apeman-react-labo/apeman-react-mixins#readme",
   "dependencies": {
     "apeman-brws-history": "^1.1.1",
-    "apemanlocale": "^2.5.20",
+    "apemanlocale": "^2.5.21",
     "apemanpromise": "^3.1.0",
     "argx": "^2.0.2",
     "deep-equal": "^1.0.1",
     "defaults": "^1.0.3",
     "hammerjs": "^2.0.6",
     "objnest": "^2.0.3",
-    "react-addons-pure-render-mixin": "^0.14.7",
+    "react-addons-pure-render-mixin": "^0.14.8",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
@@ -47,14 +47,14 @@
     "ape-updating": "^2.0.4",
     "ape-watching": "^2.1.0",
     "apeman-asset-stylesheets": "^1.0.5",
-    "apeman-react-basic": "^4.1.9",
-    "apeman-react-theme": "^3.1.4",
-    "apeman-react-toast": "^1.1.9",
+    "apeman-react-basic": "^4.3.0",
+    "apeman-react-theme": "^3.1.8",
+    "apeman-react-toast": "^1.1.15",
     "coz": "^4.0.4",
     "expandglob": "^2.0.0",
     "injectmock": "^1.1.3",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8"
   },
   "engines": {
     "node": ">=4.0.0"

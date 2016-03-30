@@ -17,7 +17,7 @@ let ApExceptionMixin = {
     //--------------------
     $apErrorMixed: true,
 
-    handleException(err){
+    handleException(err) {
         let s = this;
 
         return Promise.resolve(err)
@@ -30,7 +30,7 @@ let ApExceptionMixin = {
     // Specs
     //--------------------
 
-    componentWillMount(){
+    componentWillMount() {
         let s = this;
         let noop = (value => value);
 
@@ -40,7 +40,7 @@ let ApExceptionMixin = {
         });
     },
 
-    componentDidMount(){
+    componentDidMount() {
         let s = this;
         if (!s.doHandleException) {
             console.warn('[ApExceptionMixin] .doHandleException() is required.');

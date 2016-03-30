@@ -19,7 +19,7 @@ const ApStackMixin = {
      * Get insets of the stack.
      * @returns {object}
      */
-    getStackInsets(){
+    getStackInsets() {
         let s = this;
         return s.state[INSETS_STATE_KEY] || {};
     },
@@ -27,7 +27,7 @@ const ApStackMixin = {
      * Set insets of the stack.
      * @param {object} nextInsets - Insets to set.
      */
-    setStackInsets(nextInsets){
+    setStackInsets(nextInsets) {
         let s = this;
         let insets = s.getStackInsets();
         s.setState({
@@ -59,7 +59,7 @@ const ApStackMixin = {
      * Get width of scrollable content in the top view.
      * @returns {number|null}
      */
-    getStackedScrollWidth(){
+    getStackedScrollWidth() {
         let s = this,
             {stacker} = s.props;
         let topView = stacker && stacker.topView();
@@ -136,14 +136,14 @@ const ApStackMixin = {
     // Private
     //------------------
 
-    _addStackerListener(stacker, event, listner){
+    _addStackerListener(stacker, event, listner) {
         let s = this;
         if (listner && stacker) {
             stacker.addListener(event, listner);
         }
     },
 
-    _removeStackerListener(stacker, event, listner){
+    _removeStackerListener(stacker, event, listner) {
         let s = this;
         if (listner && stacker) {
             stacker.removeListener(event, listner);

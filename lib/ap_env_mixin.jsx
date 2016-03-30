@@ -22,7 +22,7 @@ let ApEnvMixin = {
      * Detect if env is production.
      * @returns {boolean}
      */
-    isProductionEnv(){
+    isProductionEnv() {
         let s = this;
         return s.getEnv() === 'production';
     },
@@ -31,7 +31,7 @@ let ApEnvMixin = {
      * Get env values.
      * @returns {string} - Env value.
      */
-    getEnv(){
+    getEnv() {
         let s = this;
         return s.props.NODE_ENV || s.context[ENV_ENV_KEY] || process.env.NODE_ENV;
     },
@@ -52,7 +52,7 @@ let ApEnvMixin = {
         [ENV_ENV_KEY]: types.string
     },
 
-    getChildContext(){
+    getChildContext() {
         let s = this;
         return {
             [ENV_ENV_KEY]: s.getEnv()

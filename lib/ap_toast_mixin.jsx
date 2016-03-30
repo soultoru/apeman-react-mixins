@@ -21,7 +21,7 @@ let ApToastMixin = {
      * Get current toast messages.
      * @returns {object} - Messages object.
      */
-    getToaster(){
+    getToaster() {
         let s = this;
         let toaster = s[TOAST_TOASTER_KEY] || s.context[TOAST_TOASTER_KEY];
         if (!toaster) {
@@ -36,7 +36,7 @@ let ApToastMixin = {
      * @param {string} message - Message to set
      * @param {string} [level="default"] - Level of message.
      */
-    toast(message, level){
+    toast(message, level) {
         let s = this;
         let toaster = s.getToaster();
         level = level || 'default';
@@ -49,7 +49,7 @@ let ApToastMixin = {
     /**
      * Set info toast message
      */
-    infoToast(message){
+    infoToast(message) {
         let s = this;
         s.toast(message, 'info');
     },
@@ -57,7 +57,7 @@ let ApToastMixin = {
     /**
      * Set warn toast message
      */
-    warnToast(message){
+    warnToast(message) {
         let s = this;
         s.toast(message, 'warn');
     },
@@ -65,7 +65,7 @@ let ApToastMixin = {
     /**
      * Set error toast message
      */
-    errorToast(message){
+    errorToast(message) {
         let s = this;
         s.toast(message, 'error');
     },
@@ -73,7 +73,7 @@ let ApToastMixin = {
     /**
      * Decorate toast context.
      */
-    registerToaster(toaster){
+    registerToaster(toaster) {
         let s = this;
         s[TOAST_TOASTER_KEY] = toaster;
     },
@@ -90,7 +90,7 @@ let ApToastMixin = {
         [TOAST_TOASTER_KEY]: types.object
     },
 
-    getChildContext(){
+    getChildContext() {
         let s = this;
         return {
             [TOAST_TOASTER_KEY]: s.getToaster()

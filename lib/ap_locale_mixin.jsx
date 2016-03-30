@@ -22,7 +22,7 @@ let ApLocaleMixin = {
      * Get locales
      * @returns {object} - Locale data.
      */
-    getLocale(){
+    getLocale() {
         let s = this;
         let locale = s[LOCALE_LOCALE_KEY] || s.context[LOCALE_LOCALE_KEY];
         if (!locale) {
@@ -36,7 +36,7 @@ let ApLocaleMixin = {
      * Register locale data.
      * @param {object} locale
      */
-    registerLocale(locale){
+    registerLocale(locale) {
         let s = this;
 
         function resolveLocale(keypath, options) {
@@ -60,7 +60,7 @@ let ApLocaleMixin = {
     childContextTypes: {
         [LOCALE_LOCALE_KEY]: types.func
     },
-    getChildContext(){
+    getChildContext() {
         let s = this;
         return {
             [LOCALE_LOCALE_KEY]: s.getLocale()

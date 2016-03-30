@@ -33,12 +33,12 @@ let ApHistoryMixin = {
         });
     },
 
-    componentDidMount(){
+    componentDidMount() {
         let s = this;
         apHistory.onPop(s.historyDidPop);
     },
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         let s = this;
         apHistory.offPop(s.historyDidPop);
     }

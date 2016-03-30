@@ -21,7 +21,7 @@ let ApPageMixin = {
      * Register page view resolver.
      * @param {object} resolver - A resolver instance
      */
-    registerPageViewResolver(resolver){
+    registerPageViewResolver(resolver) {
         let s = this;
         s._pageViewResolver = resolver;
     },
@@ -31,7 +31,7 @@ let ApPageMixin = {
      * @param {string} name - Name of stack
      * @param {object} stacker - A stacker instance
      */
-    registerPageViewStacker(name, stacker){
+    registerPageViewStacker(name, stacker) {
         let s = this;
         s._pageStacks = s._pageStacks || {};
         let resolver = s._pageViewResolver;
@@ -48,7 +48,7 @@ let ApPageMixin = {
      * De register page stack
      * @param name
      */
-    deregisterPageStack(name){
+    deregisterPageStack(name) {
         let s = this;
         let stacker = s._pageStacks[name];
         stacker.removeListener('push', s.pageStackViewDidPush);
@@ -61,7 +61,7 @@ let ApPageMixin = {
      * @param {string} name - Name of stack
      * @returns {ApViewStack.Stacker}
      */
-    getPageStack(name){
+    getPageStack(name) {
         let s = this;
         let stack = s._pageStacks[name];
         if (!stack) {
@@ -75,7 +75,7 @@ let ApPageMixin = {
      * @param {object} stacker - View stacker.
      * @returns {string} - Page url
      */
-    pageURLWithStacker(stacker){
+    pageURLWithStacker(stacker) {
         let s = this;
         return `/${s.pageName}/${stacker.stackName}/${stacker.toURL()}`;
     },
@@ -83,7 +83,7 @@ let ApPageMixin = {
     /**
      * Reset page stacks.
      */
-    resetPageStacks(){
+    resetPageStacks() {
         let s = this;
         let stacks = s._pageStacks || {};
         for (let name of Object.keys(stacks)) {
@@ -97,7 +97,7 @@ let ApPageMixin = {
      * Restore page url
      * @param {string} url
      */
-    restorePageURL(url){
+    restorePageURL(url) {
         let s = this;
         if (!url) {
             return;
@@ -128,7 +128,7 @@ let ApPageMixin = {
      * Get layout for page.
      * @returns {object}
      */
-    getPageLayouts(){
+    getPageLayouts() {
         let s = this;
         return s._pageLayouts || {};
     },
@@ -138,7 +138,7 @@ let ApPageMixin = {
      * @param {string} name - Name of layout.
      * @param {object} layout - Layout data.
      */
-    updatePageLayout(name, layout){
+    updatePageLayout(name, layout) {
         let s = this;
         let _pageLayouts = Object.assign({}, s.getPageLayouts());
         _pageLayouts[name] = Object.assign(

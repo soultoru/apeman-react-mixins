@@ -20,7 +20,7 @@ let ApFlushMixin = {
      * Flush message.
      * @param {string} msg - Message to show.
      */
-    flush(msg){
+    flush(msg) {
         if (!msg) {
             return;
         }

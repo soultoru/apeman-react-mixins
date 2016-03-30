@@ -16,7 +16,7 @@ const ApViewMixin = {
     /**
      * Pop this view from the current stack only if this view is the top.
      */
-    popThisViewFromCurrentStack(){
+    popThisViewFromCurrentStack() {
         let s = this;
         let {props} = s;
         let topView = props.viewTop();
@@ -31,7 +31,7 @@ const ApViewMixin = {
     /**
      * Pop a view from the current stack.
      */
-    popViewFromCurrentStack(){
+    popViewFromCurrentStack() {
         let s = this;
         return s._popView();
     },
@@ -42,7 +42,7 @@ const ApViewMixin = {
      * @param {object} params - View params.
      * @param {string} way - View push way.
      */
-    pushViewToCurrentStack(view, params, way){
+    pushViewToCurrentStack(view, params, way) {
         let s = this;
         return s._pushView(view, params, way);
     },
@@ -78,13 +78,13 @@ const ApViewMixin = {
     // Private
     //--------------------
 
-    _pushView(view, params, way){
+    _pushView(view, params, way) {
         let s = this,
             {props} = s;
         return props.viewPush(view, params, way).then(props.onViewPush);
     },
 
-    _popView(){
+    _popView() {
         let s = this,
             {props} = s;
         return props.viewPop().then(props.onViewPop);

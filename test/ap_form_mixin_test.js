@@ -36,10 +36,18 @@ describe('ap-form-mixin', () => {
                 let s = this;
                 assert.ok(s.handleFormChange);
                 assert.ok(s.handleFormSubmit);
+
+                let formValues = s.getFormValues();
+                assert.equal(formValues.foo, 'formatted:bar');
+            },
+            formatFormValues(value) {
+                return Object.assign(value, {
+                    foo: "formatted:" + value.foo
+                });
             }
         });
         let root = React.createElement(MockClass, {
-            formValues: 'foo'
+            formValues: {'foo': 'bar'}
         });
         let html = ReactDOM.renderToString(root);
         assert.ok(html);

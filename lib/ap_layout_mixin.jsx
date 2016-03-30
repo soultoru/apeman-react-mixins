@@ -23,7 +23,7 @@ let ApLayoutMixin = {
     /**
      * Reserve layout.
      */
-    layout(immidate){
+    layout(immidate) {
         let s = this,
             {props} = s;
         clearTimeout(s._layoutTimer);
@@ -59,7 +59,7 @@ let ApLayoutMixin = {
     // Lifecycle
     //--------------------
 
-    componentWillMount(){
+    componentWillMount() {
         let s = this;
         if (s.getInitialLayouts) {
             s.layouts = s.getInitialLayouts();

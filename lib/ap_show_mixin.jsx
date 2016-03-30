@@ -35,7 +35,7 @@ let ApShowMixin = {
      * @param {object} [params] - View params
      * @returns {*|Promise}
      */
-    showAsNavigated(name, params){
+    showAsNavigated(name, params) {
         let s = this;
         return s._show(name, params, NAVIGATION_WAY);
     },
@@ -46,7 +46,7 @@ let ApShowMixin = {
      * @param {object} [params] - View params
      * @returns {*|Promise}
      */
-    showAsModal(name, params){
+    showAsModal(name, params) {
         let s = this;
         return s._show(name, params, MODAL_WAY);
     },
@@ -58,7 +58,7 @@ let ApShowMixin = {
      * @param {object} [params] - View params
      * @returns {*|Promise}
      */
-    showAsImmediate(name, params){
+    showAsImmediate(name, params) {
         let s = this;
         return s._show(name, params, IMMEDIATE_WAY);
     },
@@ -95,7 +95,7 @@ let ApShowMixin = {
      * @returns {Promise}
      * @private
      */
-    _show(name, params, way){
+    _show(name, params, way) {
 
         assert.ok(ComponentsToShow, "Show not initialized. You need to call .registerComponentsForShow() before using show mixin");
 

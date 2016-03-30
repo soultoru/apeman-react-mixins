@@ -19,7 +19,7 @@ let ApSideMixin = {
      * Check if server side or not.
      * @returns {boolean}
      */
-    isSeverSide(){
+    isSeverSide() {
         let s = this;
         return !s.isClientSide()
     },
@@ -28,7 +28,7 @@ let ApSideMixin = {
      * Check if client side or not.
      * @returns {boolean}
      */
-    isClientSide(){
+    isClientSide() {
         let s = this;
         return (typeof(window) !== 'undefined') && !!window && !!window.location;
     }

@@ -7,6 +7,7 @@
 
 import React, {PropTypes as types} from 'react';
 import ReactDOM from 'react-dom';
+import defaults from 'defaults';
 
 /** @lends ApFormMixin */
 let ApFormMixin = {
@@ -20,7 +21,7 @@ let ApFormMixin = {
      * Handle change of form input
      * @param {object} e - Input change event.
      */
-    handleFormChange(e){
+    handleFormChange(e) {
         let s = this,
             {props} = s;
 
@@ -43,7 +44,7 @@ let ApFormMixin = {
      * Handle form submit.
      * @param {object} e - Submit event.
      */
-    handleFormSubmit(e){
+    handleFormSubmit(e) {
         let s = this,
             {props} = s;
 
@@ -60,7 +61,7 @@ let ApFormMixin = {
      * Handle form cancel.
      * @param {object} e - Submit event.
      */
-    handleFormCancel(e){
+    handleFormCancel(e) {
         let s = this,
             {props} = s;
 
@@ -79,7 +80,7 @@ let ApFormMixin = {
      * @param {string} name - Name of the value.
      * @returns {*} - Value
      */
-    getFormValue(name){
+    getFormValue(name) {
         let s = this;
         let values = s.getFormValues();
         return values && values[name] || null;
@@ -89,11 +90,11 @@ let ApFormMixin = {
      * Get form values.
      * @returns {*|null|string}
      */
-    getFormValues(){
+    getFormValues() {
         let s = this,
             {props} = s;
 
-        return props.formValues || null;
+        return s.formatFormValues(props.formValues || null);
     },
 
     /**
@@ -102,7 +103,7 @@ let ApFormMixin = {
      * @param {object} options - Optional setttings
      * @returns {function}
      */
-    asFormHandler(handler, options){
+    asFormHandler(handler, options) {
         let s = this;
         options = options || {};
         let key = options.key || 'default';
@@ -138,11 +139,20 @@ let ApFormMixin = {
             onFormSubmit: null,
             onFormCancel: null
         }
-    }
+    },
 
     //--------------------
     // Lifecycle
     //--------------------
+
+    componentWillMount() {
+        let s = this;
+
+        let noop = (value => value);
+        defaults(s, {
+            formatFormValues: noop
+        });
+    }
 
 
 };

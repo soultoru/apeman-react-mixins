@@ -23,7 +23,7 @@ let ApTimerMixin = {
      * @param {number} duration - Timeout duration.
      * @returns {Promise}
      */
-    setTimer(name, duration){
+    setTimer(name, duration) {
         let s = this;
         return new Promise(resolve => {
             let id = setTimeout(() => {
@@ -39,7 +39,7 @@ let ApTimerMixin = {
      * @param {number} duration - Timeout duration.
      * @returns {Promise}
      */
-    resetTimer(name, duration){
+    resetTimer(name, duration) {
         let s = this;
 
         return s.clearTimer(name)
@@ -53,7 +53,7 @@ let ApTimerMixin = {
      * @param {string} name - Name of timer.
      * @returns {Promise}
      */
-    clearTimer(name){
+    clearTimer(name) {
         let s = this;
         let id;
         if (s._timers.hasOwnProperty(name)) {
@@ -68,7 +68,7 @@ let ApTimerMixin = {
      * Clear all timers.
      * @returns {Promise}
      */
-    clearAllTimers(){
+    clearAllTimers() {
         let s = this;
         return Promise.all(
             Object.keys(s._timers || {}).map(name =>

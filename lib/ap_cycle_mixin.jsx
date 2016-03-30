@@ -23,7 +23,7 @@ let ApCycleMixin = {
      * @param {string|number|object} params - Parameters.
      * @param {object} handlers - Fetch handlers.
      */
-    cycle(params, handlers){
+    cycle(params, handlers) {
         let s = this;
         defaults(handlers, {
             will: noop,
