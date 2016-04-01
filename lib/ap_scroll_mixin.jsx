@@ -19,6 +19,10 @@ let ApScrollMixin = {
     // Specs
     //--------------------
 
+    /**
+     * Refresh iscroll size.
+     * @param {number} [delay=0]
+     */
     refreshIScroll(delay) {
         let s = this;
         clearTimeout(s._iScrollRefreshTimer);
@@ -31,10 +35,22 @@ let ApScrollMixin = {
         }, delay || 0);
     },
 
-
+    /**
+     * Handle iscroll init callback.
+     * @param {Event} e - Init event.
+     */
     handleIScrollInit(e) {
         let s = this;
         s._iScroll = e.iScroll;
+    },
+
+    /**
+     * Get i scroll instance.
+     * @returns {?Object}
+     */
+    getIScroll() {
+        let s = this;
+        return s._iScroll;
     },
 
     //--------------------
