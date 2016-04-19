@@ -31,7 +31,7 @@
     "defaults": "^1.0.3",
     "hammerjs": "^2.0.6",
     "objnest": "^2.0.3",
-    "react-addons-pure-render-mixin": "^0.14.8",
+    "react-addons-pure-render-mixin": "^15.0.1",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
@@ -53,8 +53,8 @@
     "coz": "^4.0.4",
     "expandglob": "^2.0.0",
     "injectmock": "^1.1.3",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
   },
   "engines": {
     "node": ">=4.0.0"
